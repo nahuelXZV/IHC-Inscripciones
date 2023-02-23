@@ -5,7 +5,9 @@ const nextConfig = {
   images: {
     domains: [
       'tailus.io',
+      'images.unsplash.com',
     ],
+
   },
 }
 
