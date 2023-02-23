@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Horario from 'components/horario';
 
 export default function Inscripcion() {
     const materias = [
@@ -39,6 +40,69 @@ export default function Inscripcion() {
                     horario: "Lunes 8:00 - 10:00"
                 }
             ]
+        },
+        {
+            id: 2,
+            nivel: "1",
+            sigla: "MAT-102",
+            materia: "Matemática II",
+            docentes: [
+                {
+                    id: 1,
+                    grupo: "A",
+                    cupos: 20,
+                    docente: "Juan Perez",
+                    horario: "Lunes 8:00 - 10:00"
+                }, {
+                    id: 1,
+                    grupo: "A",
+                    cupos: 20,
+                    docente: "Juan Perez",
+                    horario: "Lunes 8:00 - 10:00"
+                },
+            ]
+        },
+        {
+            id: 2,
+            nivel: "1",
+            sigla: "MAT-102",
+            materia: "Matemática II",
+            docentes: [
+                {
+                    id: 1,
+                    grupo: "A",
+                    cupos: 20,
+                    docente: "Juan Perez",
+                    horario: "Lunes 8:00 - 10:00"
+                }, {
+                    id: 1,
+                    grupo: "A",
+                    cupos: 20,
+                    docente: "Juan Perez",
+                    horario: "Lunes 8:00 - 10:00"
+                },
+            ]
+        },
+        {
+            id: 2,
+            nivel: "1",
+            sigla: "MAT-102",
+            materia: "Matemática II",
+            docentes: [
+                {
+                    id: 1,
+                    grupo: "A",
+                    cupos: 20,
+                    docente: "Juan Perez",
+                    horario: "Lunes 8:00 - 10:00"
+                }, {
+                    id: 1,
+                    grupo: "A",
+                    cupos: 20,
+                    docente: "Juan Perez",
+                    horario: "Lunes 8:00 - 10:00"
+                },
+            ]
         }, {
             id: 2,
             nivel: "1",
@@ -59,15 +123,35 @@ export default function Inscripcion() {
                     horario: "Lunes 8:00 - 10:00"
                 },
             ]
-        }
+        }, {
+            id: 2,
+            nivel: "1",
+            sigla: "MAT-102",
+            materia: "Matemática II",
+            docentes: [
+                {
+                    id: 1,
+                    grupo: "A",
+                    cupos: 20,
+                    docente: "Juan Perez",
+                    horario: "Lunes 8:00 - 10:00"
+                }, {
+                    id: 1,
+                    grupo: "A",
+                    cupos: 20,
+                    docente: "Juan Perez",
+                    horario: "Lunes 8:00 - 10:00"
+                },
+            ]
+        },
     ];
     let rows = [];
 
     materias.map((materia) => {
-        rows.push(createData(materia.id, materia.nivel, materia.sigla, materia.materia, materia.docentes));
+        rows.push(createData(materia.id, materia.nivel, materia.sigla, materia.materia, materia?.docentes));
     });
 
-    function createData(id, nivel, sigla, materia, docentes) {
+    function createData(id, nivel, sigla, materia, docentes = []) {
         let listaMaterias = [];
         docentes.forEach((docente) => {
             let doc = {
@@ -81,7 +165,6 @@ export default function Inscripcion() {
         })
         return { nivel, sigla, materia, listaMaterias };
     }
-    console.log(rows);
 
     function Row(props) {
         const { row } = props;
@@ -99,18 +182,15 @@ export default function Inscripcion() {
                     <TableCell className='font-bold'>{row.materia}</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                    <TableCell style={{ paddingBottom: 0, paddingTop: 1 }} colSpan={6}>
                         <Collapse in={open} timeout="auto" unmountOnExit>
                             <Box sx={{ margin: 1 }}>
-                                <Typography variant="h7" gutterBottom component="div">
-                                    Docentes disponibles
-                                </Typography>
                                 <Table size="small" aria-label="purchases">
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell align="left"></TableCell>
-                                            <TableCell className='font-bold'>Grupo</TableCell>
-                                            <TableCell className='font-bold'>Cupos</TableCell>
+                                            <TableCell className='w-24' align="left"></TableCell>
+                                            <TableCell className='font-bold w-24'>Grupo</TableCell>
+                                            <TableCell className='font-bold w-24'>Cupos</TableCell>
                                             <TableCell className='font-bold'>Docente</TableCell>
                                             <TableCell className='font-bold'>Horario</TableCell>
                                         </TableRow>
@@ -129,6 +209,7 @@ export default function Inscripcion() {
                                                     <TableCell>{historyRow.horario}</TableCell>
                                                 </TableRow>
                                             ))}
+                                        <br />
                                     </TableBody>
                                 </Table>
                             </Box>
@@ -139,39 +220,58 @@ export default function Inscripcion() {
         );
     }
 
+    function openModal() {
+        console.log('open modal');
+    }
+
     return (
         <Layout title="Inscripcion">
-            <div className="row mb-2">
+            <div className="row mb-2 mt-2">
                 <h1 className="font-bold text-2xl text-black uppercase">Gestión 1/2023</h1>
             </div>
-            {/* card w-full */}
+
             <Card className="w-full h-16 mt-8">
                 <div className="row">
                 </div>
             </Card>
+
             <Card className="w-full h-auto mt-4">
                 <div className="row p-3">
                     <h6 className="font-bold text-lg text-black ">Selecciona tus materias</h6>
                 </div>
-                <TableContainer component={Paper}>
+                <TableContainer component={Paper} className='p-2'>
                     <Table aria-label="collapsible table">
                         <TableHead>
                             <TableRow>
-                                <TableCell />
-                                <TableCell className="font-bold">Nivel</TableCell>
-                                <TableCell className="font-bold">Sigla</TableCell>
-                                <TableCell className="font-bold">Materia</TableCell>
+                                <TableCell className='w-24' />
+                                <TableCell className="font-bold text-base w-36">Nivel</TableCell>
+                                <TableCell className="font-bold text-base w-36" >Sigla</TableCell>
+                                <TableCell className="font-bold text-base">Materia</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {rows.map((row) => (
                                 <Row key={row.id} row={row} />
                             ))}
+                            <TableRow><TableCell colSpan={10} /></TableRow>
+                            <TableRow><TableCell colSpan={10} /></TableRow>
+                            <TableRow><TableCell colSpan={10} /></TableRow>
+                            <TableRow><TableCell colSpan={10} /></TableRow>
+                            <TableRow><TableCell colSpan={10} /></TableRow>
                         </TableBody>
                     </Table>
                 </TableContainer>
             </Card>
 
+            <div className='m-4'>
+                <br />
+            </div>
+
+            <div className="fixed bottom-0 right-0 p-4 cursor-pointer"  >
+                <Card className='w-96 h-40 bg-white' onClick={openModal()} >
+                    <Horario />
+                </Card>
+            </div >
         </Layout >
     )
 }
