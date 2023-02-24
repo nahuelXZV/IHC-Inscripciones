@@ -27,7 +27,7 @@ function Input(props) {
             <Box
                 component="form"
                 sx={{
-                    '& .MuiTextField-root': { m: 1, width: '30ch' },
+                    '& .MuiTextField-root': { m: 1, width: '35ch', height: '7ch' },
                 }}
                 noValidate
                 autoComplete="off"
@@ -44,8 +44,8 @@ function Input(props) {
         );
     } else if (tipo == 'password') {
         return (
-            <FormControl sx={{ m: 1, width: '30ch' }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+            <FormControl sx={{ m: 1, width: '35ch', height: '10ch' }} variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
                 <OutlinedInput
                     id="outlined-adornment-password"
                     type={showPassword ? 'text' : 'password'}
@@ -61,7 +61,7 @@ function Input(props) {
                             </IconButton>
                         </InputAdornment>
                     }
-                    label="Password"
+                    label="Contraseña"
                 />
             </FormControl>
         );
