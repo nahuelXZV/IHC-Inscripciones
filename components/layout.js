@@ -1,6 +1,7 @@
 import Aside from "./aside";
 import Head from "next/head";
 import Boton from "./boton";
+import Input from "./input";
 
 export default function Layout({ children, title }) {
     return (
@@ -19,12 +20,9 @@ export default function Layout({ children, title }) {
                 </div>
                 <main className="basis-[80%] px-6 py-4 xl:basis[80%] lg:basis[85%] 2xl:basis[85%]">
                     {children}
-                    <div className="flex flex-col justify-center items-center">
-                          <Boton tipo = 'Ingresar' ancho='150px' alto='50px' letra='15px'/>
-                          <Boton tipo = 'Filtrar' ancho='150px' alto='50px' letra='15px'/>
-                          <Boton tipo = 'Confirmar' ancho='150px' alto='50px' letra='15px'/>
-                          <Boton tipo = 'Cancelar' ancho='150px' alto='50px' letra='15px'/>
-                    </div>
+                    <Input tipo='registro' />
+                    <Input tipo='password' />
+                    <Input tipo='buscador' />
                 </main>
             </div>
         </>
