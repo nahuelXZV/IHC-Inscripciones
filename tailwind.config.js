@@ -17,6 +17,9 @@ module.exports = {
                 'verde': '#3BFF1C',
                 'blanco2': '#F9FBFE',
             },
+            fontSize: {
+                'pq': '0.75rem',
+            }
         },
     },
     plugins: [],

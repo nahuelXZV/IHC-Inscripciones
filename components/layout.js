@@ -1,4 +1,5 @@
 import Aside from "./aside";
+import Nav from "./nav";
 import Head from "next/head";
 
 export default function Layout({ children, title }) {
@@ -11,14 +12,17 @@ export default function Layout({ children, title }) {
                 <link rel="icon" href="/icono.png" />
             </Head>
 
-            <div className="flex h-screen overflow-y-auto bg-fondo">
-                {/* mover el main al lado del aside */}
-                <div className="basis-[20%] xl:basis-[20%] lg:basis-[15%] 2xl:basis-[15%]">
-                    <Aside />
-                </div>
-                <main className="basis-[80%] px-6 py-4 xl:basis[80%] lg:basis[85%] 2xl:basis[85%]">
+            {/* <div className="flex flex-col overflow-hidden h-screen bg-fondo">
+                <Nav />
+                <div className="px-6 py-2 bg-fondo h-screen overflow-y-auto">
                     {children}
-                </main>
+                </div>
+            </div> */}
+            <div className="flex flex-col overflow-hidden h-screen bg-fondo">
+                <Nav />
+                <div className="px-3 py-2 bg-fondo h-screen overflow-hidden flex flex-row">
+                    {children}
+                </div>
             </div>
         </>
     );
