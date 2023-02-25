@@ -11,13 +11,6 @@ export default function Layout({ children, title }) {
                 <meta name="viewport" content="initial-scale=1, width=device-width" />
                 <link rel="icon" href="/icono.png" />
             </Head>
-
-            {/* <div className="flex flex-col overflow-hidden h-screen bg-fondo">
-                <Nav />
-                <div className="px-6 py-2 bg-fondo h-screen overflow-y-auto">
-                    {children}
-                </div>
-            </div> */}
             <div className="flex flex-col overflow-hidden h-screen bg-fondo">
                 <Nav />
                 <div className="px-3 py-2 bg-fondo h-screen overflow-hidden flex flex-row">
