@@ -6,6 +6,7 @@ const nextConfig = {
     domains: [
       'tailus.io',
       'images.unsplash.com',
+      'scontent.fcbb2-1.fna.fbcdn.net'
     ],
 
   },
