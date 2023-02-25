@@ -20,9 +20,7 @@ export default function Layout({ children, title }) {
                 </div>
                 <main className="basis-[80%] px-6 py-4 xl:basis[80%] lg:basis[85%] 2xl:basis[85%]">
                     {children}
-                    <Input tipo='registro' />
-                    <Input tipo='password' />
-                    <Input tipo='buscador' />
+
                 </main>
             </div>
         </>
