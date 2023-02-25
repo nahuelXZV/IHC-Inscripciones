@@ -1,6 +1,8 @@
 import Aside from "./aside";
 import Nav from "./nav";
 import Head from "next/head";
+import Boton from "./boton";
+import Input from "./input";
 
 export default function Layout({ children, title }) {
     return (
@@ -15,7 +17,7 @@ export default function Layout({ children, title }) {
                 <Nav />
                 <div className="px-3 py-2 bg-fondo h-screen overflow-hidden flex flex-row">
                     {children}
-                </div>
+                </main>
             </div>
         </>
     );
