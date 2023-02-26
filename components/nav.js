@@ -23,7 +23,7 @@ export default function Nav() {
                             <li className={path == '/boleta' ? active : inactive}><Link href="/boleta">Boleta</Link></li>
                             <li className={path == '/inscripcion' ? active : inactive}><Link href="/inscripcion">Inscripción</Link></li>
                             <li className={path == '/adicion' ? active : inactive}><Link href="/adicion">Adición</Link></li>
-                            <li class="md:px-4 md:py-2 hover:text-indigo-400"><Link href="#">Cerrar Sesión</Link></li>
+                            <li className="md:px-4 md:py-2 hover:text-indigo-400"><Link href="#">Cerrar Sesión</Link></li>
                         </ul>
                     </div>
                 </nav>
