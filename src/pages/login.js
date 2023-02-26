@@ -30,7 +30,7 @@ export default function Login() {
             <div className="flex h-screen overflow-y-auto bg-fondo items-center justify-center">
                 <div style={styles} className='container overflow-hidden p-4 border-spacing-1 m-1'>
                     <div className="float-left text-center items-center w-1/2 justify-center h-full my-20">
-                        <p className="py-6 font-bold" style={{ fontSize: '20px'}}>Inscripcion WEB</p>
+                        <p className="py-6 font-bold" style={{ fontSize: '20px' }}>Inscripcion WEB</p>
                         <Input tipo='registro' />
                         <Input tipo='password' />
                         <br></br>

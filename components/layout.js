@@ -17,7 +17,7 @@ export default function Layout({ children, title }) {
                 <Nav />
                 <div className="px-3 py-2 bg-fondo h-screen overflow-hidden flex flex-row">
                     {children}
-                </main>
+                </div>
             </div>
         </>
     );

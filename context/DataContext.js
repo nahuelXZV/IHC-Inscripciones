@@ -403,10 +403,16 @@ const AppContext = createContext({
     adicion: DBadicion,
     horario: DBHorario,
     usuarios: DBuser,
+    listMaterias: [],
     cantIns: 0,
     cantLev: 0,
     isInscripcion: false,
     isAdicion: false,
+    setIsInscripcion: () => { },
+    setCantIns: () => { },
+    setCantLev: () => { },
+    setIsAdicion: () => { },
+    setListMaterias: () => { },
 });
 
 export default function DataContext({ children }) {
@@ -417,6 +423,7 @@ export default function DataContext({ children }) {
     const [adicion, setAdicion] = useState(DBadicion);
     const [horario, setHorario] = useState(DBHorario);
     const [usuarios, setUsuarios] = useState(DBuser);
+    const [listMaterias, setListMaterias] = useState([]);
     const [cantIns, setCantIns] = useState(0);
     const [cantLev, setCantLev] = useState(0);
     const [isInscripcion, setIsInscripcion] = useState(false);
@@ -431,10 +438,16 @@ export default function DataContext({ children }) {
                 adicion,
                 horario,
                 usuarios,
+                listMaterias,
                 cantIns,
                 cantLev,
                 isInscripcion,
                 isAdicion,
+                setIsInscripcion,
+                setCantIns,
+                setCantLev,
+                setIsAdicion,
+                setListMaterias,
             }}>
             {children}
         </AppContext.Provider>
