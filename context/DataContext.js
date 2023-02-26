@@ -15,6 +15,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Juan Perez",
                 horario: "Lunes 07:00 - 08:30, Miercoles 07:00 - 08:30, Viernes 07:00 - 08:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -55,6 +56,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Juan Perez",
                 horario: "Martes 7:00 - 9:15, Jueves 7:00 - 9:15",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -95,7 +97,7 @@ var DBmaterias = [
         nivel: "2",
         sigla: "MAT-102",
         materia: "Matemática II",
-        observacion: "Levantamiento",
+        observacion: "Caso Especial",
         docentes: [
             {
                 id: 1,
@@ -103,6 +105,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Juan Perez",
                 horario: "Lunes 08:30 - 10:00, Miercoles 08:30 - 10:00, Viernes 08:30 - 10:00",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -142,6 +145,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Juan Perez",
                 horario: "Martes 07:00 - 09:15, Jueves 07:00 - 09:15",
+                check: false,
                 dias: [
                     {
                         id: 1,

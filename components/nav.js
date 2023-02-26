@@ -8,7 +8,7 @@ export default function Nav() {
     var inactive = "md:px-4 md:py-2 hover:text-blue-400";
 
     return (
-        <div className="px-3 mt-2 2xl:container 2xl:mx-auto">
+        <div className="w-full px-3 mt-2">
             <div className="bg-white rounded shadow-lg py-3 px-7">
                 <nav className="flex justify-between">
                     <div className="-mx-6 px-6 mt-2">

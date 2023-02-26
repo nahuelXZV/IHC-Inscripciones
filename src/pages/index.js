@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <Layout title="Perfil">
-      <div className="flex-col h-1/2 rounded-lg p-5 w-auto relative">
+      {/* <div className="flex-col h-1/2 rounded-lg p-5 w-auto relative">
         <div className="w-full h-1/2 bg-azul rounded-t-lg"></div>
         <div className="w-full h-1/2 bg-white rounded-b-lg"></div>
         <div className="absolute top-0 left-0 w-full h-full items-center justify-center flex-col text-center pt-20">
@@ -52,7 +52,7 @@ export default function Home() {
             </tr>
           </table>
         </div>
-      </div>
+      </div> */}
     </Layout >
   )
 }
