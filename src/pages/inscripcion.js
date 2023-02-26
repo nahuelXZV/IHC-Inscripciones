@@ -30,6 +30,7 @@ export default function Inscripcion() {
     const [cantLev, setCantLev] = useState(dataContext.cantLev);
     const [isInscripcion, setIsInscripcion] = useState(dataContext.isInscripcion);
     const [busqueda, setBusqueda] = useState('');
+    // const [listMaterias, setListMaterias] = useState([]);
 
     // styles the table
     var normal = 'cursor-pointer select-none';
@@ -67,6 +68,7 @@ export default function Inscripcion() {
         }
     });
     const [listMaterias, setListMaterias] = useState(rows);
+    // setListMaterias(rows);
 
     function createData(id, nivel, sigla, materia, observacion, docentes = []) {
         let listaMaterias = [];
