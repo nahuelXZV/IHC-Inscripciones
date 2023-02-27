@@ -8,12 +8,30 @@ import { useRouter } from 'next/router';
 import { useAppContext } from "../context/DataContext";
 import { useState, useEffect, Fragment } from "react";
 
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+
 export default function AlertDialog({ type = 'inscripción' }) {
     const [open, setOpen] = useState(false);
     const router = useRouter();
     const dataContext = useAppContext();
     const [boleta, setBoleta] = useState(dataContext.boleta);
     const [inscripciones, setInscripciones] = useState(dataContext.inscripciones);
+
+    // funciones para manejar el alert
+    const [texto1, setTexto] = useState('');
+    const [checked, setChecked] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+    };
+    const handleAlertClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setShowAlert(false);
+    };
+    // fin funciones para manejar el alert
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -25,7 +43,9 @@ export default function AlertDialog({ type = 'inscripción' }) {
 
     function saveDataA() {
         if (inscripciones.length == 0) {
-            alert('Necesita minimo 1 materia para guardar la adición');
+            //alert('Necesita minimo 1 materia para guardar la adición');
+            setTexto('Necesita minimo 1 materia para guardar la adición');
+            setShowAlert(true);
             return;
         }
         setBoleta(inscripciones);  // guardamos la lista de inscripciones en la base de datos local
@@ -35,7 +55,9 @@ export default function AlertDialog({ type = 'inscripción' }) {
 
     function saveDataI() {
         if (inscripciones.length == 0) {
-            alert('Necesita minimo 1 materia para guardar la inscripción');
+            //alert('Necesita minimo 1 materia para guardar la inscripción');
+            setTexto('Necesita minimo 1 materia para guardar la inscripción');
+            setShowAlert(true);
             return;
         }
         setBoleta(inscripciones);  // guardamos la lista de inscripciones en la base de datos local
@@ -76,6 +98,11 @@ export default function AlertDialog({ type = 'inscripción' }) {
                             </button>
                     }
                 </DialogActions>
+                <Snackbar open={showAlert} autoHideDuration={4000} onClose={handleAlertClose}>
+                    <Alert onClose={handleAlertClose} variant='filled' severity="error">
+                        {texto1}
+                    </Alert>
+                </Snackbar>
             </Dialog>
         </div>
     );
