@@ -17,7 +17,7 @@ export default function Aside() {
             </div>
 
             <div className="mt-4 text-center">
-                <Image src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" width={40} height={40} alt="" class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28" />
+                <Image src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" width={40} height={40} alt="" className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28" />
                 <h5 className="hidden mt-3 text-xl font-semibold text-gray-600 lg:block">Karen Mendoza Rios</h5>
             </div>
 

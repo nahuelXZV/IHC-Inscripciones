@@ -16,6 +16,10 @@ module.exports = {
                 'azul': '#0170F2',
                 'verde': '#3BFF1C',
                 'blanco2': '#F9FBFE',
+                'levantamiento':'#E0F2FE',
+                'casoespecial':'#E7E5E4',
+                'levantamientoE':'#38BDF8',
+                'casoespecialE':'#A8A29E',
             },
             fontSize: {
                 'pq': '0.75rem',
