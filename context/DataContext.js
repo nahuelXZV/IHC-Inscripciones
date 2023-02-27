@@ -15,6 +15,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Caceres Chacon Braulio",
                 horario: "Lunes 10:00 - 11:30, Miercoles 10:00 - 11:30, Viernes 10:00 - 11:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -55,6 +56,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Cano Cespedes Jorge",
                 horario: "Lunes 9:15 - 11:30, Miercoles 9:15 - 11:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -86,7 +88,7 @@ var DBmaterias = [
                         dias: "Miercoles",
                         horaInicio: "10:45",
                     },
-                   
+
                 ]
             }
         ]
@@ -104,6 +106,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Vargas Yapura Edwin",
                 horario: "Martes 20:30 - 22:45, Jueves 20:30 - 22:45",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -152,6 +155,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Peinado Pereira Juan Carlos",
                 horario: "Martes 07:00 - 09:15, Jueves 07:00 - 09:15",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -191,6 +195,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Vaca Pinto Cespedes Roberto",
                 horario: "Martes 07:00 - 09:15, Jueves 07:00 - 09:15",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -230,6 +235,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Barroso Viruez Gino",
                 horario: "Lunes 11:30 - 13:00, Miercoles 11:30 - 13:00, Viernes 11:30 - 13:00",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -278,6 +284,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Veizaga Gonzales Josue Obed",
                 horario: "Lunes 08:30 - 10:00, Miercoles 08:30 - 10:00, Viernes 08:30 - 10:00",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -317,6 +324,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Veizaga Gonzales Josue Obed",
                 horario: "Martes 07:00 - 09:15, Jueves 07:00 - 09:15",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -365,6 +373,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Miranda Carrasco Carlos",
                 horario: "Lunes 07:00 - 08:30, Miercoles 07:00 - 08:30, Viernes 07:00 - 08:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -413,6 +422,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Peinado Pereira Miguel Jesus",
                 horario: "Martes 16:45 - 18:15, Jueves 16:45 - 18:15",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -451,6 +461,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Peinado Pereira Miguel Jesus",
                 horario: "Martes 18:15 - 20:30, Jueves 18:15 - 20:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -499,6 +510,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Barroso Viruez Gino",
                 horario: "Martes 18:15 - 20:30, Jueves 18:15 - 20:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -547,6 +559,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Perez Ferreira Ubaldo",
                 horario: "Martes 18:15 - 20:30, Jueves 18:15 - 20:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -586,6 +599,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Perez Ferreira Ubaldo",
                 horario: "Miercoles 10:45 - 13:00, Viernes 10:45 - 13:00",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -634,6 +648,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Barroso Viruez Gino",
                 horario: "Lunes 07:00 - 08:30, Miercoles 07:00 - 08:30, Viernes 07:00 - 08:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -674,6 +689,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Barroso Viruez Gino",
                 horario: "Lunes 08:30 - 10:00, Miercoles 08:30 - 10:00, Viernes 08:30 - 10:00",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -722,6 +738,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Garzon Cuellar Angelica",
                 horario: "Lunes 07:00 - 08:30, Miercoles 07:00 - 08:30, Viernes 07:00 - 08:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -762,6 +779,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Garzon Cuellar Angelica",
                 horario: "Martes 9:15 - 11:30, Jueves 9:15 - 11:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -793,7 +811,7 @@ var DBmaterias = [
                         dias: "Jueves",
                         horaInicio: "10:45",
                     },
-                   
+
                 ]
             },
         ]
@@ -811,6 +829,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Sanchez Herbas Jose Gabriel",
                 horario: "Lunes 19:45 - 21:15, Miercoles 19:45 - 21:15, Viernes 19:45 - 21:15",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -851,6 +870,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Suareza Cespedes Melby",
                 horario: "Martes 21:15 - 22:45, Jueves 21:15 - 22:45",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -889,6 +909,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Vargas Yapura Edwin",
                 horario: "Martes 18:15 - 20:30, Jueves 18:15 - 20:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -937,6 +958,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Monrroy Dipp Victor Fernando",
                 horario: "Martes 9:15 - 11:30, Jueves 9:15 - 11:30",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -968,7 +990,7 @@ var DBmaterias = [
                         dias: "Jueves",
                         horaInicio: "10:45",
                     },
-                   
+
                 ]
             },
             {
@@ -977,6 +999,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Gonzales Sandoval Jorge Antonio",
                 horario: "Lunes 19:45 - 21:15, Miercoles 19:45 - 21:15, Viernes 19:45 - 21:15",
+                check: false,
                 dias: [
                     {
                         id: 1,
@@ -1017,6 +1040,7 @@ var DBmaterias = [
                 cupos: 20,
                 docente: "Villagomez Melgar Jose Junior",
                 horario: "Lunes 19:00 - 20:30, Miercoles 19:00 - 20:30, Viernes 19:00 - 20:30",
+                check: false,
                 dias: [
                     {
                         id: 1,

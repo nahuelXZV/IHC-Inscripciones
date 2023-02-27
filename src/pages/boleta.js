@@ -8,7 +8,7 @@ export default function Boleta() {
   const dataContext = useAppContext();
   const [usuarios, setUsuarios] = useState(dataContext.usuarios);
   const usuarioAutenticado = usuarios.find((usuario) => usuario.auth === 'true');
- 
+
 
   return (
     <Layout title="Boleta">
@@ -21,15 +21,15 @@ export default function Boleta() {
               </tr>
               <tr>
                 <td className="font-bold text-sm">Registro</td>
-                <td className="text-sm font-normal text-black ">{usuarioAutenticado.registro}</td>
+                <td className="text-sm font-normal text-black ">{usuarioAutenticado?.registro}</td>
               </tr>
               <tr>
                 <td className="font-bold text-sm">Estudiante</td>
-                <td className="text-sm font-normal text-black">{usuarioAutenticado.apellido+' '+usuarioAutenticado.nombre}</td>
+                <td className="text-sm font-normal text-black">{usuarioAutenticado?.apellido + ' ' + usuarioAutenticado?.nombre}</td>
               </tr>
               <tr>
                 <td className="font-bold text-sm">Carrera</td>
-                <td className="text-sm font-normal text-black">{usuarioAutenticado.carrera}</td>
+                <td className="text-sm font-normal text-black">{usuarioAutenticado?.carrera}</td>
               </tr>
               <tr>
                 <td className="font-bold text-sm">Gestion</td>

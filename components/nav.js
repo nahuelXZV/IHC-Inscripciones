@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from 'next/router';
 import { useAppContext } from "../context/DataContext";
 import { useState, useEffect, Fragment } from "react";
+import { deleteCookie } from 'cookies-next';
 
 export default function Nav() {
     const router = useRouter();
@@ -18,6 +19,9 @@ export default function Nav() {
             if (usuarios[i].auth == 'true') {
                 console.log('Cerrando sesion');
                 usuarios[i].auth = 'false'
+                deleteCookie('auth');
+                deleteCookie('registro');
+                localStorage.removeItem("registro");
                 setUsuarios(usuarios);
                 console.log(usuarios[i]);
             }
@@ -36,7 +40,7 @@ export default function Nav() {
                     <div className="text-gray-500 order-3 md:w-auto md:order-2 md:flex space-x-2">
                         <ul className="flex font-semibold justify-between">
                             {/* <Active Link = text-indigo-500 Inactive Link = hover:text-indigo-500*/}
-                            <li className={path == '/perfil' ? active : inactive}><Link href="/perfil">Perfil</Link></li>
+                            <li className={path == '/' ? active : inactive}><Link href="/">Perfil</Link></li>
                             <li className={path == '/boleta' ? active : inactive}><Link href="/boleta">Boleta</Link></li>
                             <li className={path == '/inscripcion' ? active : inactive}><Link href="/inscripcion">Inscripción</Link></li>
                             <li className={path == '/adicion' ? active : inactive}><Link href="/adicion">Adición</Link></li>
