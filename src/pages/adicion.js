@@ -11,15 +11,13 @@ import TableRow from '@mui/material/TableRow';
 import Collapse from '@mui/material/Collapse';
 import AlertDialog from 'components/confirm';
 import Message from 'components/message';
+import MessageAd from 'components/messageAd';
 import Horario from 'components/horario';
 import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
-import { useRouter } from 'next/router';
 import Layout from 'components/layout';
 import Card from '@mui/material/Card';
-import Input from 'components/input';
 import Box from '@mui/material/Box';
-import * as React from 'react';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
@@ -30,9 +28,9 @@ export default function Adicion() {
   const [boleta, setBoleta] = useState(dataContext.boleta);
   const [inscripciones, setInscripciones] = useState(dataContext.inscripciones);
   const [horario, setHorario] = useState(dataContext.horario);
-  const [cantIns, setCantIns] = useState(dataContext.cantIns);
   const [cantLev, setCantLev] = useState(dataContext.cantLev);
   const [isInscripcion, setIsInscripcion] = useState(dataContext.isInscripcion);
+  const [isAdicion, setIsAdicion] = useState(dataContext.isAdicion);
   const [busqueda, setBusqueda] = useState('');
 
   // styles the table
@@ -40,10 +38,12 @@ export default function Adicion() {
   var levantamiento = 'cursor-pointer select-none bg-levantamiento';
   var casoEspecial = 'cursor-pointer select-none bg-casoespecial';
 
-  // verificamos si ya inscribimos
-  if (isInscripcion) {
+
+
+  // verificamos si no inscribi
+  if (!isInscripcion) {
     return (<Layout title="Adicion">
-      <Message />
+      <MessageAd />
     </Layout>)
   }
 
@@ -63,6 +63,13 @@ export default function Adicion() {
     </div>
   </Layout>)
 
+  // verificamos si ya adicione materias
+  if (isAdicion) {
+    return (<Layout title="Adicion">
+      <Message />
+    </Layout>)
+  }
+
   // funciones para mostrar la tabla 
   let rows = [];
   materias.map((materia) => {
@@ -79,7 +86,7 @@ export default function Adicion() {
         docente: docente.docente,
         horario: docente.horario,
         dias: docente.dias,
-        check: false
+        check: docente.check
       }
       listaMaterias.push(doc);
     })
@@ -152,7 +159,7 @@ export default function Adicion() {
   // funciones para manejar el horario
   function validate(materia, docente) {
     // validamos la cantidad de inscripciones
-    if (cantIns >= 7) {
+    if (dataContext.cantIns >= 7) {
       alert("Limite maximo de materias seleccionadas alcanzado");
       return false;
     }
@@ -200,7 +207,7 @@ export default function Adicion() {
           }
         })
         setInscripciones(inscripcionesTemp);    // actualizamos la lista de inscripciones
-        setCantIns(cantIns - 1);            // actualizamos la cantidad de inscripciones
+        dataContext.setCantIns(dataContext.cantIns - 1);            // actualizamos la cantidad de inscripciones
         materia.observacion == 'Levantamiento' ? setCantLev(cantLev - 1) : null;    // actualizamos la cantidad de levantamientos
 
         // eliminamos la materia del horario
@@ -344,7 +351,7 @@ export default function Adicion() {
 
 
       setHorario(tempHorario);    // actualizamos el horario
-      setCantIns(cantIns + 1);    // actualizamos la cantidad de inscripciones
+      dataContext.setCantIns(dataContext.cantIns + 1);    // actualizamos la cantidad de inscripciones
       materia.observacion == 'Levantamiento' ? setCantLev(cantLev + 1) : null;    // actualizamos la cantidad de levantamientos
 
       handlerCheck(true, materia, docente); // actualizamos el check de la materia
@@ -352,6 +359,20 @@ export default function Adicion() {
   }
 
   function handlerCheck(value, materia, docente) {
+    var temp2 = materias;
+    temp2.forEach((materia2, index) => {
+      if (materia2.id == materia.id) {
+        materia2.docentes.forEach((docente2, index2) => {
+          if (docente2.id == docente.id) {
+            temp2[index].docentes[index2].check = value;
+          }
+        })
+      }
+    });
+    setMaterias(temp2);
+    console.log(JSON.stringify(materias));
+
+    // actualizamos la lista de materias
     var temp2 = listMaterias;
     temp2.forEach((materia2, index) => {
       if (materia2.id == materia.id) {
@@ -456,7 +477,7 @@ export default function Adicion() {
           <h6 className="font-bold text-lg text-black text-center">HORARIO</h6>
           <div className='flex justify-start'>
             <p className='text-sm mr-2'>Materias Seleccionadas:</p>
-            <p className='text-sm'>{cantIns}</p>
+            <p className='text-sm'>{dataContext.cantIns}</p>
           </div>
         </div>
         <Horario />

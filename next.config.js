@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: false,
   images: {
     domains: [
@@ -8,7 +8,6 @@ const nextConfig = {
       'images.unsplash.com',
       'scontent.fcbb2-1.fna.fbcdn.net'
     ],
-
   },
 }
 

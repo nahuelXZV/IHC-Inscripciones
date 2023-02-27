@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -7,13 +6,14 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useRouter } from 'next/router';
 import { useAppContext } from "../context/DataContext";
+import { useState, useEffect, Fragment } from "react";
 
 export default function AlertDialog({ type = 'inscripción' }) {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const router = useRouter();
     const dataContext = useAppContext();
-    const [boleta, setBoleta] = React.useState(dataContext.boleta);
-    const [inscripciones, setInscripciones] = React.useState(dataContext.inscripciones);
+    const [boleta, setBoleta] = useState(dataContext.boleta);
+    const [inscripciones, setInscripciones] = useState(dataContext.inscripciones);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -22,9 +22,20 @@ export default function AlertDialog({ type = 'inscripción' }) {
     const handleClose = () => {
         setOpen(false);
     };
-    function saveData() {
-        if (inscripciones.length === 0) {
-            alert('Necesita minimo 1 materia para guardar la inscripcion');
+
+    function saveDataA() {
+        if (inscripciones.length == 0) {
+            alert('Necesita minimo 1 materia para guardar la adición');
+            return;
+        }
+        setBoleta(inscripciones);  // guardamos la lista de inscripciones en la base de datos local
+        dataContext.setIsAdicion(true);
+        router.push('/boleta'); // redireccionamos a la pagina del perfil
+    }
+
+    function saveDataI() {
+        if (inscripciones.length == 0) {
+            alert('Necesita minimo 1 materia para guardar la inscripción');
             return;
         }
         setBoleta(inscripciones);  // guardamos la lista de inscripciones en la base de datos local
@@ -54,10 +65,16 @@ export default function AlertDialog({ type = 'inscripción' }) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <button onClick={handleClose} className='bg-rojo text-white hover:bg-red-800 capitalize py-1 px-3'>Volver</button>
-                    <button onClick={saveData} autoFocus className='bg-azul text-white hover:bg-blue-700 capitalize py-1 px-3'>
-                        Confirmar
-                    </button>
+                    <button onClick={() => { handleClose() }} className='bg-rojo text-white hover:bg-red-800 capitalize py-1 px-3'>Volver</button>
+                    {
+                        type == 'adición' ?
+                            <button onClick={() => { saveDataA() }} autoFocus className='bg-azul text-white hover:bg-blue-700 capitalize py-1 px-3'>
+                                Confirmar
+                            </button> :
+                            <button onClick={() => { saveDataI() }} autoFocus className='bg-azul text-white hover:bg-blue-700 capitalize py-1 px-3'>
+                                Confirmar
+                            </button>
+                    }
                 </DialogActions>
             </Dialog>
         </div>

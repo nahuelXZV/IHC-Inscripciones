@@ -1,7 +1,9 @@
+import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import TableContainer from '@mui/material/TableContainer';
 import { useAppContext } from "../../context/DataContext";
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import { useState, useEffect, Fragment } from "react";
 import IconButton from '@mui/material/IconButton';
 import TableCell from '@mui/material/TableCell';
@@ -14,14 +16,10 @@ import Message from 'components/message';
 import Horario from 'components/horario';
 import Table from '@mui/material/Table';
 import Paper from '@mui/material/Paper';
-import { useRouter } from 'next/router';
 import Layout from 'components/layout';
 import Card from '@mui/material/Card';
-import Input from 'components/input';
 import Box from '@mui/material/Box';
 import * as React from 'react';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 export default function Inscripcion() {
     // obtenemos los datos de la base de datos local
@@ -32,6 +30,7 @@ export default function Inscripcion() {
     const [cantLev, setCantLev] = useState(dataContext.cantLev);
     const [isInscripcion, setIsInscripcion] = useState(dataContext.isInscripcion);
     const [busqueda, setBusqueda] = useState('');
+    // const [listMaterias, setListMaterias] = useState([]);
 
     // styles the table
     var normal = 'cursor-pointer select-none';
@@ -68,6 +67,8 @@ export default function Inscripcion() {
             rows.push(createData(materia.id, materia.nivel, materia.sigla, materia.materia, materia.observacion, materia?.docentes));
         }
     });
+    const [listMaterias, setListMaterias] = useState(rows);
+    // setListMaterias(rows);
 
     function createData(id, nivel, sigla, materia, observacion, docentes = []) {
         let listaMaterias = [];
@@ -79,7 +80,7 @@ export default function Inscripcion() {
                 docente: docente.docente,
                 horario: docente.horario,
                 dias: docente.dias,
-                check: false
+                check: docente.check,
             }
             listaMaterias.push(doc);
         })
@@ -148,7 +149,6 @@ export default function Inscripcion() {
             </Fragment >
         );
     }
-    const [listMaterias, setListMaterias] = useState(rows);
 
     // funciones para manejar el horario
     function validate(materia, docente) {
@@ -353,9 +353,24 @@ export default function Inscripcion() {
     }
 
     function handlerCheck(value, materia, docente) {
-        var temp2 = listMaterias;
+        var temp2 = materias;
         temp2.forEach((materia2, index) => {
             if (materia2.id == materia.id) {
+                materia2.docentes.forEach((docente2, index2) => {
+                    if (docente2.id == docente.id) {
+                        temp2[index].docentes[index2].check = value;
+                    }
+                })
+            }
+        });
+        setMaterias(temp2);
+        console.log(JSON.stringify(materias));
+
+        // actualizamos la lista de materias
+        var temp2 = listMaterias;
+        temp2.forEach((materia2, index) => {
+            if (materia2.id == materia.id && materia2.observacion != 'Caso Especial') {
+                console.log('entro' + JSON.stringify(materia2));
                 materia2.listaMaterias.forEach((docente2, index2) => {
                     if (docente2.id == docente.id) {
                         temp2[index].listaMaterias[index2].check = value;
@@ -453,7 +468,7 @@ export default function Inscripcion() {
             </div >
             <div className='basis-[40%] ml-2 bg-white px-2'>
                 <div className='py-3'>
-                    <h6 className="font-bold text-lg text-black text-center">HORARIO</h6>
+                    <h6 className="font-bold text-lg text-black text-center">HORARIO PREVIO</h6>
                     <div className='flex justify-start'>
                         <p className='text-sm mr-2'>Materias Seleccionadas:</p>
                         <p className='text-sm'>{dataContext.cantIns}</p>
