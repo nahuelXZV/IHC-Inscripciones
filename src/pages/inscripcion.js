@@ -34,8 +34,8 @@ export default function Inscripcion() {
 
     // styles the table
     var normal = 'cursor-pointer select-none';
-    var levantamiento = 'cursor-pointer select-none bg-cyan-100';
-    var casoEspecial = 'cursor-pointer select-none bg-blue-200';
+    var levantamiento = 'cursor-pointer select-none bg-levantamiento';
+    var casoEspecial = 'cursor-pointer select-none bg-casoespecial';
 
     // verificamos si ya inscribimos
     if (isInscripcion) {
@@ -97,8 +97,9 @@ export default function Inscripcion() {
                     <TableCell>{row.sigla}</TableCell>
                     <TableCell className='font-bold'>
                         {row.materia}
-                        {row.observacion == 'Levantamiento' ? <span className="bg-blue-400 text-white font-bold rounded-full px-2 py-1 ml-2">Levantamiento</span> : ''}
-                        {row.observacion == 'Caso Especial' ? <span className="bg-blue-400 text-white font-bold rounded-full px-2 py-1 ml-2">Caso Especial</span> : ''}
+                        {/* mensajito redondeado */}
+                        {row.observacion == 'Levantamiento' ? <span className="bg-levantamientoE text-white font-bold rounded-full px-2 py-1 ml-2">Levantamiento</span> : ''}
+                        {row.observacion == 'Caso Especial' ? <span className="bg-casoespecialE text-white font-bold rounded-full px-2 py-1 ml-2">Caso Especial</span> : ''}
                     </TableCell>
                     <TableCell>
                         <IconButton aria-label="expand row" size="small" >

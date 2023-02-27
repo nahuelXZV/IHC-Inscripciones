@@ -1,58 +1,152 @@
-import { Luggage } from '@mui/icons-material';
-import Layout from 'components/layout';
-import Image from 'next/image'
+import Head from "next/head";
+import Link from 'next/link'
+import Image from "next/image"
+import Input from "components/input";
+import Boton from "components/boton";
+import { fontSize } from "@mui/system";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import IconButton from '@mui/material/IconButton';
+import FilledInput from '@mui/material/FilledInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import InputAdornment from '@mui/material/InputAdornment';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import * as React from 'react';
+import { useState, useEffect, Fragment } from "react";
+import { useAppContext } from "../../context/DataContext";
+import { useRouter } from 'next/router';
+
 
 export default function Home() {
 
-  return (
-    <Layout title="Perfil">
-      {/* <div className="flex-col h-1/2 rounded-lg p-5 w-auto relative">
-        <div className="w-full h-1/2 bg-azul rounded-t-lg"></div>
-        <div className="w-full h-1/2 bg-white rounded-b-lg"></div>
-        <div className="absolute top-0 left-0 w-full h-full items-center justify-center flex-col text-center pt-20">
-          <Image src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" width={40} height={40} alt="" class="w-20 h-20 m-auto rounded-full object-cover lg:w-32 lg:h-32" />
-          <h1 className="hidden mt-3 text-xl font-semibold text-black lg:block"> Karen Mendoza Rios </h1>
-          <h1 className="hidden mt-1 text-lg font-bold text-black lg:block"> Ing. Informatica </h1>
-        </div>
-      </div>
+  const router = useRouter();
+    var styles = {
+        width: '1000px',
+        height: '500px',
+        backgroundColor: 'white',
+        margin: '10px',
+        padding: '10px',
+        borderRadius: '10px',
+        textAlign: 'center',
+        justifyContent: 'center',
+    }
+    var style = {
+        backgroundColor: '#0170F2',
+        color: 'white',
+        width: '150px',
+        weight: '150px',
+        margin: '10px',
+        padding: '10px 0px',
+        borderRadius: '10px',
+        fontSize: '15px',
+        height: '50px'
+    }
 
-      <div className='h-1/2 rounded-lg p-5 w-auto'>
-        <div className="w-full h-full bg-white rounded-lg px-10 py-1">
-          <table className='border-spacing-10 h-full w-full'>
-            <tr>
-              <td class="text-lg font-bold text-black">Datos personales</td>
-            </tr>
-            <tr>
-              <td class="font-bold text-xs">Registro</td>
-              <td class="text-xs font-normal text-black ">219010641</td>
-            </tr>
-            <tr>
-              <td class="font-bold text-xs ">Cedula de identidad</td>
-              <td class="text-xs font-normal text-black">12890699</td>
-            </tr>
-            <tr>
-              <td class="font-bold text-xs">Apellidos y nombres</td>
-              <td class="text-xs font-normal text-black">Mendoza Rios Karen</td>
-            </tr>
-            <tr>
-              <td class="font-bold text-xs">Fecha de nacimiento</td>
-              <td class="text-xs font-normal text-black">22 de agosto de 1999</td>
-            </tr>
-            <tr>
-              <td class="font-bold text-xs">Direccion</td>
-              <td class="text-xs font-normal text-black">Av. Centenerio calle Buenos Aires</td>
-            </tr>
-            <tr>
-              <td class="font-bold text-xs">Celular</td>
-              <td class="text-xs font-normal text-black">69093581</td>
-            </tr>
-            <tr>
-              <td class="font-bold text-xs">E-mail</td>
-              <td class="text-xs font-normal text-black">karenmendoza@gmail.com</td>
-            </tr>
-          </table>
-        </div>
-      </div> */}
-    </Layout >
-  )
+    const [showPassword, setShowPassword] = React.useState(false);
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault();
+    };
+
+    const dataContext = useAppContext();
+    const [usuarios, setUsuarios] = useState(dataContext.usuarios);
+    const [registro, setRegistro] = useState('');
+    const [contraseña, setContraseña] = useState('');
+
+    function manejarEnvio(evento) {
+        evento.preventDefault(); // Evita que se envíe el formulario
+        console.log('Registro:', registro);
+        console.log('Contraseña:', contraseña);
+        console.log(usuarios);
+         for (let i = 0; i < usuarios.length; i++) {
+             if (usuarios[i].registro == registro && usuarios[i].contraseña == contraseña) {
+                 usuarios[i].auth = 'true'
+                 setUsuarios(usuarios);
+                 console.log('Inicio de sesion exitoso')
+                 console.log(usuarios[i]);
+                 router.push('/perfil');
+           }
+         }
+    }
+
+    return (
+        <>
+            <Head>
+                <title>Login</title>
+                <meta name="description" content="Generated by create next app" />
+                <meta name="viewport" content="initial-scale=1, width=device-width" />
+                <link rel="icon" href="/icono.png" />
+            </Head>
+
+            <div className="flex h-screen overflow-y-auto bg-fondo items-center justify-center">
+                <div style={styles} className='container overflow-hidden p-4 border-spacing-1 m-1'>
+                    <div className="float-left text-center items-center w-1/2 justify-center h-full my-20">
+                        <p className="py-6 font-bold" style={{ fontSize: '20px' }}>Inscripcion WEB</p>
+                        <Box
+                            component="form"
+                            sx={{
+                                '& .MuiTextField-root': { m: 1, width: '35ch', height: '7ch' },
+                            }}
+                            noValidate
+                            autoComplete="off"
+                        >
+                            <div>
+                                <TextField
+                                    required
+                                    id="registro"
+                                    label="Nro. de registro"
+                                    defaultValue=""
+                                    name="registro"
+                                    value={registro}
+                                    onChange={(evento) => setRegistro(evento.target.value)}
+                                />
+                            </div>
+                        </Box>
+                        <FormControl sx={{ m: 1, width: '35ch', height: '10ch' }} variant="outlined">
+                            <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
+                            <OutlinedInput
+                                id="contraseña"
+                                name='contraseña'
+                                value={contraseña}
+                                onChange={(evento) => setContraseña(evento.target.value)}
+                                type={showPassword ? 'text' : 'password'}
+                                endAdornment={
+                                    <InputAdornment
+                                        position="end">
+                                        <IconButton
+                                            aria-label="toggle password visibility"
+                                            onClick={handleClickShowPassword}
+                                            onMouseDown={handleMouseDownPassword}
+                                            edge="end"
+                                        >
+                                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        </IconButton>
+                                    </InputAdornment>
+                                }
+                                label="Contraseña"
+                            />
+                        </FormControl>
+                        <br></br>
+                        <button id='enviar' onClick={manejarEnvio} style={style} className='text-white font-bold py-2 px-4 rounded'>
+                            <div className='flex flex-row justify-center items-center'>
+                                <span className='ml-1'>Ingresar</span>
+                            </div>
+                        </button>
+                        <p className="py-0 font-medium" style={{ fontSize: '10px', color: '#0170F2' }}>¿Olvidaste tu contraseña?</p>
+                    </div>
+                    <div style={{ height: '70%', left: '50%', position: 'absolute', borderLeft: '1px solid #808080', color: 'gray' }}></div>
+                    <div className="float-right p-8">
+                        <Image src="https://scontent.fcbb2-1.fna.fbcdn.net/v/t39.30808-6/254492065_4876233149083206_1107629317053811200_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=szD_syyq-F4AX8w2ey-&_nc_ht=scontent.fcbb2-1.fna&oh=00_AfCX1326Z0y-Tc8pYQPoLTvgVyFR9SRR6WDLU45JovYg3g&oe=63FE0CBD" width={400} height={150} alt="" />
+                    </div>
+
+                </div>
+
+            </div>
+        </>
+    )
+
 }
