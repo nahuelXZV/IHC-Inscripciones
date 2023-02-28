@@ -243,45 +243,45 @@ export default function Inscripcion() {
 
                 // eliminamos la materia del horario
                 let horarioTemp = horario;
-                horarioTemp.forEach((slot, index) => {
+                horarioTemp.forEach((slot) => {
                     if (slot.lunes.length > 0 && slot.lunes[0].id == materia.id) {
-                        slot.lunes.forEach((materia, index) => {
-                            if (materia.id == materia.id) {
+                        slot.lunes.forEach((mat, index) => {
+                            if (mat.id == materia.id) {
                                 slot.lunes.splice(index, 1);
                             }
                         })
                     }
                     if (slot.martes.length > 0) {
-                        slot.martes.forEach((materia, index) => {
-                            if (materia.id == materia.id) {
+                        slot.martes.forEach((mat, index) => {
+                            if (mat.id == materia.id) {
                                 slot.martes.splice(index, 1);
                             }
                         })
                     }
                     if (slot.miercoles.length > 0 && slot.miercoles[0].id == materia.id) {
-                        slot.miercoles.forEach((materia, index) => {
-                            if (materia.id == materia.id) {
+                        slot.miercoles.forEach((mat, index) => {
+                            if (mat.id == materia.id) {
                                 slot.miercoles.splice(index, 1);
                             }
                         })
                     }
                     if (slot.jueves.length > 0 && slot.jueves[0].id == materia.id) {
-                        slot.jueves.forEach((materia, index) => {
-                            if (materia.id == materia.id) {
+                        slot.jueves.forEach((mat, index) => {
+                            if (mat.id == materia.id) {
                                 slot.jueves.splice(index, 1);
                             }
                         })
                     }
                     if (slot.viernes.length > 0 && slot.viernes[0].id == materia.id) {
-                        slot.viernes.forEach((materia, index) => {
-                            if (materia.id == materia.id) {
+                        slot.viernes.forEach((mat, index) => {
+                            if (mat.id == materia.id) {
                                 slot.viernes.splice(index, 1);
                             }
                         })
                     }
                     if (slot.sabado.length > 0 && slot.sabado[0].id == materia.id) {
-                        slot.sabado.forEach((materia, index) => {
-                            if (materia.id == materia.id) {
+                        slot.sabado.forEach((mat, index) => {
+                            if (mat.id == materia.id) {
                                 slot.sabado.splice(index, 1);
                             }
                         })
