@@ -31,6 +31,7 @@ export default function Login() {
     const [contraseña, setContraseña] = useState('');
     const [showPassword, setShowPassword] = React.useState(false);
     let auth = false;
+    const [alerta, setAlerta] = useState('');
 
     var styles = {
         width: '1000px',
@@ -62,7 +63,8 @@ export default function Login() {
 
     function manejarEnvio(evento) {
         if (registro == '' || contraseña == '') {
-            alert('Por favor ingrese todos los datos');
+            //alert('Por favor ingrese todos los datos');
+            setAlerta('Por favor ingrese todos los datos');
             return;
         }
         evento.preventDefault(); // Evita que se envíe el formulario
@@ -75,10 +77,12 @@ export default function Login() {
                 setUsuarios(usuarios);
                 router.push('/');
                 auth = true;
+                setAlerta('');
             }
         }
         if (!auth) {
-            alert('Usuario o contraseña incorrectos');
+            //alert('Usuario o contraseña incorrectos');
+            setAlerta('Registro o contraseña incorrectos');
         }
     }
 
@@ -94,7 +98,7 @@ export default function Login() {
             <div className="flex h-screen overflow-y-auto bg-fondo items-center justify-center">
                 <div style={styles} className='container overflow-hidden p-4 border-spacing-1 m-1'>
                     <div className="float-left text-center items-center w-1/2 justify-center h-full my-20">
-                        <p className="py-6 font-bold" style={{ fontSize: '20px' }}>Inscripción WEB</p>
+                        <p className="pb-10 font-bold" style={{ fontSize: '20px' }}>Inscripción WEB</p>
                         <Box
                             component="form"
                             sx={{
@@ -105,7 +109,6 @@ export default function Login() {
                         >
                             <div>
                                 <TextField
-                                    required
                                     id="registro"
                                     label="Nro. de registro"
                                     defaultValue=""
@@ -115,7 +118,7 @@ export default function Login() {
                                 />
                             </div>
                         </Box>
-                        <FormControl sx={{ m: 1, width: '35ch', height: '10ch' }} variant="outlined">
+                        <FormControl sx={{ m: 1, width: '35ch', height: '7ch'}} variant="outlined">
                             <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
                             <OutlinedInput
                                 id="contraseña"
@@ -138,7 +141,8 @@ export default function Login() {
                                 }
                                 label="Contraseña"
                             />
-                        </FormControl>
+                        </FormControl>{
+                        ({alerta} != '')?<p className="p-0 font-bold" style={{ fontSize: '10px', color: 'red' }}>{alerta}</p>:<></>}
                         <br></br>
                         <button id='enviar' onClick={manejarEnvio} style={style} className='text-white font-bold py-2 px-4 rounded'>
                             <div className='flex flex-row justify-center items-center'>

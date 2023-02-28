@@ -29,15 +29,15 @@ export default function Boleta() {
               </tr>
               <tr>
                 <td className="font-bold text-sm">Registro</td>
-                <td className="text-sm font-normal text-black ">{usuarioAutenticado?.registro}</td>
+                <td className="text-sm font-normal text-black ">{(usuarioAutenticado)? usuarioAutenticado.registro: '12345678'}</td>
               </tr>
               <tr>
                 <td className="font-bold text-sm">Estudiante</td>
-                <td className="text-sm font-normal text-black">{usuarioAutenticado?.apellido + ' ' + usuarioAutenticado?.nombre}</td>
+                <td className="text-sm font-normal text-black">{(usuarioAutenticado)? usuarioAutenticado.apellido + ' ' + usuarioAutenticado.nombre : 'Harry Styles'}</td>
               </tr>
               <tr>
                 <td className="font-bold text-sm">Carrera</td>
-                <td className="text-sm font-normal text-black">{usuarioAutenticado?.carrera}</td>
+                <td className="text-sm font-normal text-black">{(usuarioAutenticado)? usuarioAutenticado.carrera: 'Ing. Informatica'}</td>
               </tr>
               <tr>
                 <td className="font-bold text-sm">Gestion</td>

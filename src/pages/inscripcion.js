@@ -197,7 +197,7 @@ export default function Inscripcion() {
         if (materia.observacion == 'Levantamiento' && !mismoDocente) {
             if (cantLev >= cantMaxLev) {
                 //alert("Limite maximo de levantamientos alcanzado");
-                setTexto('Limite maximo de levantamientos alcanzado');
+                setTexto('Limite maximo de levantamientos alcanzado: ' + cantMaxLev);
                 setShowAlert(true);
                 return false;
             }
@@ -518,7 +518,7 @@ export default function Inscripcion() {
                                 </TableBody>
                             </Table>
                         </TableContainer>
-                        <Snackbar open={showAlert} autoHideDuration={4000} onClose={handleAlertClose}>
+                        <Snackbar open={showAlert} autoHideDuration={5000} onClose={handleAlertClose}>
                             <Alert onClose={handleAlertClose} variant='filled' severity="error">
                                 {texto1}
                             </Alert>
