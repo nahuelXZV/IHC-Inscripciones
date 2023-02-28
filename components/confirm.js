@@ -98,7 +98,7 @@ export default function AlertDialog({ type = 'inscripción' }) {
                             </button>
                     }
                 </DialogActions>
-                <Snackbar open={showAlert} autoHideDuration={4000} onClose={handleAlertClose}>
+                <Snackbar open={showAlert} autoHideDuration={5000} onClose={handleAlertClose}>
                     <Alert onClose={handleAlertClose} variant='filled' severity="error">
                         {texto1}
                     </Alert>
