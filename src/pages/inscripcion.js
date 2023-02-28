@@ -171,7 +171,7 @@ export default function Inscripcion() {
         let mismoDocente = false;
         inscripciones.forEach((inscripcion) => {
             if (inscripcion.id == materia.id) {
-                existe = true;
+                // existe = true;
                 if (inscripcion.docente.id == docente.id) {
                     mismoDocente = true;
                 }
