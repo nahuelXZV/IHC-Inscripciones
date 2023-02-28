@@ -29,6 +29,7 @@ export default function Adicion() {
   const dataContext = useAppContext();
   const [materias, setMaterias] = useState(dataContext.materias);
   const [inscripciones, setInscripciones] = useState(dataContext.inscripciones);
+  const [colores, setColores] = useState(dataContext.colores);
   const [horario, setHorario] = useState(dataContext.horario);
   const [cantLev, setCantLev] = useState(dataContext.cantLev);
   const [isInscripcion, setIsInscripcion] = useState(dataContext.isInscripcion);
@@ -215,20 +216,80 @@ export default function Adicion() {
         }
       });
       if (cantLevI >= cantMaxLev) {
-        //alert("Limite maximo de levantamientos alcanzado");
         setTexto('Limite maximo de levantamientos alcanzado: ' + cantMaxLev);
         setShowAlert(true);
         return false;
       }
     }
-    // validamos la cantidad de casos especiales
     return true;
+  }
+
+  function verifChoque(materia, docente) {
+    let choque = false;
+    var tempHorario = horario;
+    docente.dias.forEach((dia) => {
+      if (choque) {
+        return choque;
+      }
+      tempHorario.forEach((slot, index) => {
+        if (slot.horaInicio == dia.horaInicio) {
+          if (dia.dias == 'Lunes') {
+            if (slot.lunes.length != 0) {
+              setTexto('Choque de horario en el dia Lunes a las ' + slot.horaInicio + ' con la materia ' + slot.lunes[0].sigla + '-' + slot.lunes[0].grupo);
+              choque = true;
+              setShowAlert(true);
+              return;
+            }
+          }
+          if (dia.dias == 'Martes') {
+            if (slot.martes.length != 0) {
+              setTexto('Choque de horario en el dia Martes a las ' + slot.horaInicio + ' con la materia ' + slot.martes[0].sigla + '-' + slot.martes[0].grupo);
+              choque = true;
+              setShowAlert(true);
+              return;
+            }
+          }
+          if (dia.dias == 'Miercoles') {
+            if (slot.miercoles.length != 0) {
+              setTexto('Choque de horario en el dia Miercoles a las ' + slot.horaInicio + ' con la materia ' + slot.miercoles[0].sigla + '-' + slot.miercoles[0].grupo);
+              choque = true;
+              setShowAlert(true);
+              return;
+            }
+          }
+          if (dia.dias == 'Jueves') {
+            if (slot.jueves.length != 0) {
+              setTexto('Choque de horario en el dia Jueves a las ' + slot.horaInicio + ' con la materia ' + slot.jueves[0].sigla + '-' + slot.jueves[0].grupo);
+              choque = true;
+              setShowAlert(true);
+              return;
+            }
+          }
+          if (dia.dias == 'Viernes') {
+            if (slot.viernes.length != 0) {
+              setTexto('Choque de horario en el dia Viernes a las ' + slot.horaInicio + ' con la materia ' + slot.viernes[0].sigla + '-' + slot.viernes[0].grupo);
+              choque = true;
+              setShowAlert(true);
+              return;
+            }
+          }
+          if (dia.dias == 'Sabado') {
+            if (slot.sabado.length != 0) {
+              setTexto('Choque de horario en el dia Sabado a las ' + slot.horaInicio + ' con la materia ' + slot.sabado[0].sigla + '-' + slot.sabado[0].grupo);
+              choque = true;
+              setShowAlert(true);
+              return;
+            }
+          }
+        }
+      });
+    });
+    return choque;
   }
 
   function addMateria(materia, docente) {
     let existe = false;
     let mismoDocente = false;
-    let choque = false;
 
     // hacemos todas las validaciones
     if (!validate(materia, docente)) {
@@ -313,86 +374,62 @@ export default function Adicion() {
         setShowAlert(true);
       }
     } else {
+
+      if (verifChoque(materia, docente)) {
+        return;
+      }
+      // sacar un color de la lista colores
+      let color = colores[0];
+      var tempColores = colores;
+      tempColores.shift();
+      setColores(tempColores);
+
       var dataHorario = { // creamos la data para agregar al horario
         id: materia.id,
         nivel: materia.nivel,
         sigla: materia.sigla,
         grupo: docente.grupo,
+        color: color,
       };
+
       // recorremos la data del docente para agregarla al horario
       var tempHorario = horario;
       docente.dias.forEach((dia) => {
-        if (choque) {
-          return;
-        }
         tempHorario.forEach((slot, index) => {
           if (slot.horaInicio == dia.horaInicio) {
             if (dia.dias == 'Lunes') {
               if (slot.lunes.length == 0) {
                 tempHorario[index].lunes.push(dataHorario);
-              } else {  // si el slot ya tiene una materia, es un choque de horario
-                setTexto('Choque de horario en el dia Lunes a las ' + slot.horaInicio + ' con la materia ' + slot.lunes[0].sigla + '-' + slot.lunes[0].grupo);
-                setShowAlert(true);
-                choque = true;
-                return;
               }
             }
             if (dia.dias == 'Martes') {
               if (slot.martes.length == 0) {
                 tempHorario[index].martes.push(dataHorario);
-              } else {  // si el slot ya tiene una materia, es un choque de horario
-                setTexto('Choque de horario en el dia Martes a las ' + slot.horaInicio + ' con la materia ' + slot.martes[0].sigla + '-' + slot.martes[0].grupo);
-                setShowAlert(true);
-                choque = true;
-                return;
               }
             }
             if (dia.dias == 'Miercoles') {
               if (slot.miercoles.length == 0) {
                 tempHorario[index].miercoles.push(dataHorario);
-              } else {  // si el slot ya tiene una materia, es un choque de horario
-                setTexto('Choque de horario en el dia Miercoles a las ' + slot.horaInicio + ' con la materia ' + slot.miercoles[0].sigla + '-' + slot.miercoles[0].grupo);
-                setShowAlert(true);
-                choque = true;
-                return;
               }
             }
             if (dia.dias == 'Jueves') {
               if (slot.jueves.length == 0) {
                 tempHorario[index].jueves.push(dataHorario);
-              } else {  // si el slot ya tiene una materia, es un choque de horario
-                setTexto('Choque de horario en el dia Jueves a las ' + slot.horaInicio + ' con la materia ' + slot.jueves[0].sigla + '-' + slot.jueves[0].grupo);
-                setShowAlert(true);
-                choque = true;
-                return;
               }
             }
             if (dia.dias == 'Viernes') {
               if (slot.viernes.length == 0) {
                 tempHorario[index].viernes.push(dataHorario);
-              } else {  // si el slot ya tiene una materia, es un choque de horario
-                setTexto('Choque de horario en el dia Viernes a las ' + slot.horaInicio + ' con la materia ' + slot.viernes[0].sigla + '-' + slot.viernes[0].grupo);
-                setShowAlert(true);
-                choque = true;
-                return;
               }
             }
             if (dia.dias == 'Sabado') {
               if (slot.sabado.length == 0) {
                 tempHorario[index].sabado.push(dataHorario);
-              } else {  // si el slot ya tiene una materia, es un choque de horario
-                setTexto('Choque de horario en el dia Sabado a las ' + slot.horaInicio + ' con la materia ' + slot.sabado[0].sigla + '-' + slot.sabado[0].grupo);
-                setShowAlert(true);
-                choque = true;
-                return;
               }
             }
           }
         });
       });
-      if (choque) {
-        return;
-      }
       var data = {    // creamos la data para agregar a la lista de inscripciones
         id: materia.id,
         nivel: materia.nivel,
@@ -404,7 +441,6 @@ export default function Adicion() {
       var temp = inscripciones;
       temp.push(data);    // agregamos la materia a la lista de inscripciones
       setInscripciones(temp); // actualizamos la lista de inscripciones
-
 
       setHorario(tempHorario);    // actualizamos el horario
       dataContext.setCantIns(dataContext.cantIns + 1);    // actualizamos la cantidad de inscripciones
