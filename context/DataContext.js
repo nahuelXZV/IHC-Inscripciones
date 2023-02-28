@@ -55,37 +55,37 @@ var DBmaterias = [
                 grupo: "SB",
                 cupos: 20,
                 docente: "Cano Cespedes Jorge",
-                horario: "Lunes 9:15 - 11:30, Miercoles 9:15 - 11:30",
+                horario: "Lunes 10:00 - 11:30, Miercoles 10:00 - 11:30, Viernes 10:00 - 11:30",
                 check: false,
                 dias: [
                     {
                         id: 1,
                         dias: "Lunes",
-                        horaInicio: "09:15",
+                        horaInicio: "10:00",
                     },
                     {
                         id: 2,
                         dias: "Lunes",
-                        horaInicio: "10:00",
+                        horaInicio: "10:45",
                     },
                     {
                         id: 3,
-                        dias: "Lunes",
-                        horaInicio: "10:45",
+                        dias: "Miercoles",
+                        horaInicio: "10:00",
                     },
                     {
                         id: 4,
                         dias: "Miercoles",
-                        horaInicio: "09:15",
+                        horaInicio: "10:45",
                     },
                     {
                         id: 5,
-                        dias: "Miercoles",
+                        dias: "Viernes",
                         horaInicio: "10:00",
                     },
                     {
                         id: 6,
-                        dias: "Miercoles",
+                        dias: "Viernes",
                         horaInicio: "10:45",
                     },
 
@@ -421,26 +421,36 @@ var DBmaterias = [
                 grupo: "SA",
                 cupos: 20,
                 docente: "Peinado Pereira Miguel Jesus",
-                horario: "Martes 16:45 - 18:15, Jueves 16:45 - 18:15",
+                horario: "Martes 16:00 - 18:15, Jueves 16:00 - 18:15",
                 check: false,
                 dias: [
                     {
                         id: 1,
                         dias: "Martes",
-                        horaInicio: "16:45",
+                        horaInicio: "16:00",
                     },
                     {
                         id: 2,
                         dias: "Martes",
-                        horaInicio: "17:30",
+                        horaInicio: "16:45",
                     },
                     {
                         id: 3,
+                        dias: "Martes",
+                        horaInicio: "17:30",
+                    },
+                    {
+                        id: 4,
+                        dias: "Jueves",
+                        horaInicio: "16:00",
+                    },
+                    {
+                        id: 5,
                         dias: "Jueves",
                         horaInicio: "16:45",
                     },
                     {
-                        id: 4,
+                        id: 6,
                         dias: "Jueves",
                         horaInicio: "17:30",
                     },
@@ -598,38 +608,38 @@ var DBmaterias = [
                 grupo: "SB",
                 cupos: 20,
                 docente: "Perez Ferreira Ubaldo",
-                horario: "Miercoles 10:45 - 13:00, Viernes 10:45 - 13:00",
+                horario: "Lunes 10:00 - 11:30, Miercoles 10:00 - 11:30, Viernes 10:00 - 11:30",
                 check: false,
                 dias: [
                     {
                         id: 1,
-                        dias: "Miercoles",
-                        horaInicio: "10:45",
+                        dias: "Lunes",
+                        horaInicio: "10:00",
                     },
                     {
                         id: 2,
-                        dias: "Miercoles",
-                        horaInicio: "11:30",
+                        dias: "Lunes",
+                        horaInicio: "10:45",
                     },
                     {
                         id: 3,
                         dias: "Miercoles",
-                        horaInicio: "12:15",
+                        horaInicio: "10:00",
                     },
                     {
                         id: 4,
-                        dias: "Viernes",
+                        dias: "Miercoles",
                         horaInicio: "10:45",
                     },
                     {
                         id: 5,
                         dias: "Viernes",
-                        horaInicio: "11:30",
+                        horaInicio: "10:00",
                     },
                     {
                         id: 6,
                         dias: "Viernes",
-                        horaInicio: "12:15",
+                        horaInicio: "10:45",
                     },
                 ]
             },
@@ -869,26 +879,36 @@ var DBmaterias = [
                 grupo: "SZ",
                 cupos: 20,
                 docente: "Suareza Cespedes Melby",
-                horario: "Martes 21:15 - 22:45, Jueves 21:15 - 22:45",
+                horario: "Martes 20:30 - 22:45, Jueves 20:30 - 22:45",
                 check: false,
                 dias: [
                     {
                         id: 1,
                         dias: "Martes",
-                        horaInicio: "21:15",
+                        horaInicio: "20:30",
                     },
                     {
                         id: 2,
                         dias: "Martes",
-                        horaInicio: "22:00",
+                        horaInicio: "21:15",
                     },
                     {
                         id: 3,
+                        dias: "Martes",
+                        horaInicio: "22:00",
+                    },
+                    {
+                        id: 4,
+                        dias: "Jueves",
+                        horaInicio: "20:30",
+                    },
+                    {
+                        id: 5,
                         dias: "Jueves",
                         horaInicio: "21:15",
                     },
                     {
-                        id: 4,
+                        id: 6,
                         dias: "Jueves",
                         horaInicio: "22:00",
                     },
@@ -1030,47 +1050,6 @@ var DBmaterias = [
                         id: 6,
                         dias: "Viernes",
                         horaInicio: "20:30",
-                    },
-
-                ]
-            },
-            {
-                id: 3,
-                grupo: "SC",
-                cupos: 20,
-                docente: "Villagomez Melgar Jose Junior",
-                horario: "Lunes 19:00 - 20:30, Miercoles 19:00 - 20:30, Viernes 19:00 - 20:30",
-                check: false,
-                dias: [
-                    {
-                        id: 1,
-                        dias: "Lunes",
-                        horaInicio: "19:00",
-                    },
-                    {
-                        id: 2,
-                        dias: "Lunes",
-                        horaInicio: "19:45",
-                    },
-                    {
-                        id: 3,
-                        dias: "Miercoles",
-                        horaInicio: "19:00",
-                    },
-                    {
-                        id: 4,
-                        dias: "Miercoles",
-                        horaInicio: "19:45",
-                    },
-                    {
-                        id: 5,
-                        dias: "Viernes",
-                        horaInicio: "19:00",
-                    },
-                    {
-                        id: 6,
-                        dias: "Viernes",
-                        horaInicio: "19:45",
                     },
 
                 ]
