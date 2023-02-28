@@ -290,15 +290,22 @@ export default function Inscripcion() {
         if (existe) {
             if (mismoDocente) {
                 console.log('mismo docente');
-                let inscripcionesTemp = [];
-                inscripciones.forEach((inscripcion) => {
-                    if (inscripcion.id != materia.id) {
-                        inscripcionesTemp.push(inscripcion);
+
+                // sacar de inscripciones la materia
+                inscripciones.forEach((ins) => {
+                    if (ins.id == materia.id) {
+                        inscripciones.splice(inscripciones.indexOf(ins), 1);
                     }
-                })
-                console.log(JSON.stringify(inscripcionesTemp));
-                dataContext.setInscripciones(inscripcionesTemp);    // actualizamos la lista de inscripciones
-                console.log(JSON.stringify(inscripciones));
+                });
+
+                // let inscripcionesTemp = [];
+                // inscripciones.forEach((ins) => {
+                //     if (ins.id != materia.id) {
+                //         inscripcionesTemp.push(ins);
+                //     }
+                // })
+                // setInscripciones(inscripcionesTemp);    // actualizamos la lista de inscripciones
+                
                 dataContext.setCantIns(dataContext.cantIns - 1);            // actualizamos la cantidad de inscripciones
                 materia.observacion == 'Levantamiento' ? dataContext.setCantLev(cantLev - 1) : null;    // actualizamos la cantidad de levantamientos
 

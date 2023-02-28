@@ -40,7 +40,7 @@ export default function AlertDialog({ type = 'inscripción' }) {
     };
 
     function saveDataA() {
-        if (inscripciones.length == 0 || boleta.length == 0) {
+        if (inscripciones.length == 0) {
             setTexto('Necesita minimo 1 materia para guardar la adición');
             setShowAlert(true);
             return;
@@ -51,7 +51,7 @@ export default function AlertDialog({ type = 'inscripción' }) {
     }
 
     function saveDataI() {
-        if (inscripciones.length == 0 || boleta.length == 0) {
+        if (inscripciones.length == 0) {
             setTexto('Necesita minimo 1 materia para guardar la inscripción');
             setShowAlert(true);
             return;
