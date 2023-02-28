@@ -17,13 +17,11 @@ export default function Nav() {
     function cerrarSesion() {
         for (let i = 0; i < usuarios.length; i++) {
             if (usuarios[i].auth == 'true') {
-                console.log('Cerrando sesion');
                 usuarios[i].auth = 'false'
                 deleteCookie('auth');
                 deleteCookie('registro');
                 localStorage.removeItem("registro");
                 setUsuarios(usuarios);
-                console.log(usuarios[i]);
                 router.push('/login');
             }
         }
@@ -40,7 +38,6 @@ export default function Nav() {
                     </div>
                     <div className="text-gray-500 order-3 md:w-auto md:order-2 md:flex space-x-2">
                         <ul className="flex font-semibold justify-between">
-                            {/* <Active Link = text-indigo-500 Inactive Link = hover:text-indigo-500*/}
                             <li className={path == '/' ? active : inactive}><Link href="/">Perfil</Link></li>
                             <li className={path == '/boleta' ? active : inactive}><Link href="/boleta">Boleta</Link></li>
                             <li className={path == '/inscripcion' ? active : inactive}><Link href="/inscripcion">Inscripción</Link></li>

@@ -1,17 +1,11 @@
 import Head from "next/head";
-import Link from 'next/link'
 import Image from "next/image"
-import Input from "components/input";
-import Boton from "components/boton";
-import { fontSize } from "@mui/system";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
-import FilledInput from '@mui/material/FilledInput';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
-import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -63,7 +57,6 @@ export default function Login() {
 
     function manejarEnvio(evento) {
         if (registro == '' || contraseña == '') {
-            //alert('Por favor ingrese todos los datos');
             setAlerta('Por favor ingrese todos los datos');
             return;
         }
@@ -81,7 +74,6 @@ export default function Login() {
             }
         }
         if (!auth) {
-            //alert('Usuario o contraseña incorrectos');
             setAlerta('Registro o contraseña incorrectos');
         }
     }
@@ -118,7 +110,7 @@ export default function Login() {
                                 />
                             </div>
                         </Box>
-                        <FormControl sx={{ m: 1, width: '35ch', height: '7ch'}} variant="outlined">
+                        <FormControl sx={{ m: 1, width: '35ch', height: '7ch' }} variant="outlined">
                             <InputLabel htmlFor="outlined-adornment-password">Contraseña</InputLabel>
                             <OutlinedInput
                                 id="contraseña"
@@ -142,7 +134,7 @@ export default function Login() {
                                 label="Contraseña"
                             />
                         </FormControl>{
-                        ({alerta} != '')?<p className="p-0 font-bold" style={{ fontSize: '10px', color: 'red' }}>{alerta}</p>:<></>}
+                            ({ alerta } != '') ? <p className="p-0 font-bold" style={{ fontSize: '10px', color: 'red' }}>{alerta}</p> : <></>}
                         <br></br>
                         <button id='enviar' onClick={manejarEnvio} style={style} className='text-white font-bold py-2 px-4 rounded'>
                             <div className='flex flex-row justify-center items-center'>

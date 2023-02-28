@@ -1,7 +1,6 @@
 import Layout from 'components/layout';
 import { useState, useEffect, Fragment } from "react";
 import { useAppContext } from "../../context/DataContext";
-import { useRouter } from 'next/router';
 
 import Table from '@mui/material/Table';
 import TableCell from '@mui/material/TableCell';

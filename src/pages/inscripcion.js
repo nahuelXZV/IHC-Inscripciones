@@ -35,7 +35,6 @@ export default function Inscripcion() {
     const [colores, setColores] = useState(dataContext.colores);
     const [busqueda, setBusqueda] = useState('');
     const [texto1, setTexto] = useState('');
-    const [checked, setChecked] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [usuarios, setUsuarios] = useState(dataContext.usuarios);
     const usuarioAutenticado = usuarios.find((usuario) => usuario.auth === 'true');
@@ -78,7 +77,6 @@ export default function Inscripcion() {
         }
     });
     const [listMaterias, setListMaterias] = useState(rows);
-    // setListMaterias(rows);
 
     function createData(id, nivel, sigla, materia, observacion, docentes = []) {
         let listaMaterias = [];
@@ -161,9 +159,6 @@ export default function Inscripcion() {
     }
 
 
-    const handleChange = (event) => {
-        setChecked(event.target.checked);
-    };
     const handleAlertClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -187,7 +182,6 @@ export default function Inscripcion() {
 
         // validamos la cantidad de inscripciones
         if (dataContext.cantIns >= 7 && !mismoDocente) {
-            //alert("Limite maximo de materias seleccionadas alcanzado");
             setTexto('Limite maximo de materias seleccionadas alcanzado');
             setShowAlert(true);
             return false;
@@ -195,8 +189,13 @@ export default function Inscripcion() {
 
         // validamos la cantidad de levantamientos
         if (materia.observacion == 'Levantamiento' && !mismoDocente) {
-            if (cantLev >= cantMaxLev) {
-                //alert("Limite maximo de levantamientos alcanzado");
+            let cantLevI = 0;
+            inscripciones.forEach((inscripcion) => {
+                if (inscripcion.observacion == 'Levantamiento') {
+                    cantLevI++;
+                }
+            });
+            if (cantLevI >= cantMaxLev) {
                 setTexto('Limite maximo de levantamientos alcanzado: ' + cantMaxLev);
                 setShowAlert(true);
                 return false;
@@ -205,6 +204,69 @@ export default function Inscripcion() {
         // validamos la cantidad de casos especiales
 
         return true;
+    }
+
+    function verifChoque(materia, docente) {
+        let choque = false;
+        var tempHorario = horario;
+        docente.dias.forEach((dia) => {
+            if (choque) {
+                return choque;
+            }
+            tempHorario.forEach((slot, index) => {
+                if (slot.horaInicio == dia.horaInicio) {
+                    if (dia.dias == 'Lunes') {
+                        if (slot.lunes.length != 0) {
+                            setTexto('Choque de horario en el dia Lunes a las ' + slot.horaInicio + ' con la materia ' + slot.lunes[0].sigla + '-' + slot.lunes[0].grupo);
+                            choque = true;
+                            // setShowAlert(true);
+                            return;
+                        }
+                    }
+                    if (dia.dias == 'Martes') {
+                        if (slot.martes.length != 0) {
+                            setTexto('Choque de horario en el dia Martes a las ' + slot.horaInicio + ' con la materia ' + slot.martes[0].sigla + '-' + slot.martes[0].grupo);
+                            choque = true;
+                            // setShowAlert(true);
+                            return;
+                        }
+                    }
+                    if (dia.dias == 'Miercoles') {
+                        if (slot.miercoles.length != 0) {
+                            setTexto('Choque de horario en el dia Miercoles a las ' + slot.horaInicio + ' con la materia ' + slot.miercoles[0].sigla + '-' + slot.miercoles[0].grupo);
+                            choque = true;
+                            // setShowAlert(true);
+                            return;
+                        }
+                    }
+                    if (dia.dias == 'Jueves') {
+                        if (slot.jueves.length != 0) {
+                            setTexto('Choque de horario en el dia Jueves a las ' + slot.horaInicio + ' con la materia ' + slot.jueves[0].sigla + '-' + slot.jueves[0].grupo);
+                            choque = true;
+                            // setShowAlert(true);
+                            return;
+                        }
+                    }
+                    if (dia.dias == 'Viernes') {
+                        if (slot.viernes.length != 0) {
+                            setTexto('Choque de horario en el dia Viernes a las ' + slot.horaInicio + ' con la materia ' + slot.viernes[0].sigla + '-' + slot.viernes[0].grupo);
+                            choque = true;
+                            // setShowAlert(true);
+                            return;
+                        }
+                    }
+                    if (dia.dias == 'Sabado') {
+                        if (slot.sabado.length != 0) {
+                            setTexto('Choque de horario en el dia Sabado a las ' + slot.horaInicio + ' con la materia ' + slot.sabado[0].sigla + '-' + slot.sabado[0].grupo);
+                            choque = true;
+                            // setShowAlert(true);
+                            return;
+                        }
+                    }
+                }
+            });
+        });
+        return choque;
     }
 
     function addMateria(materia, docente) {
@@ -291,7 +353,6 @@ export default function Inscripcion() {
                 handlerCheck(false, materia, docente); // actualizamos el check de la materia
             } else {
                 handlerCheck(false, materia, docente); // actualizamos el check de la materia
-                //alert('La materia ' + materia.materia + ' ya esta registrada con otro docente, desmarque la otra opcion.');
                 setTexto('La materia ' + materia.materia + ' ya esta registrada con otro docente, desmarque la otra opcion.');
                 setShowAlert(true);
             }
@@ -321,7 +382,6 @@ export default function Inscripcion() {
                             if (slot.lunes.length == 0) {
                                 tempHorario[index].lunes.push(dataHorario);
                             } else {  // si el slot ya tiene una materia, es un choque de horario
-                                //alert('Choque de horario en el dia Lunes a las ' + slot.horaInicio + ' con la materia ' + slot.lunes[0].sigla + '-' + slot.lunes[0].grupo);
                                 setTexto('Choque de horario en el dia Lunes a las ' + slot.horaInicio + ' con la materia ' + slot.lunes[0].sigla + '-' + slot.lunes[0].grupo);
                                 choque = true;
                                 setShowAlert(true);
@@ -332,7 +392,6 @@ export default function Inscripcion() {
                             if (slot.martes.length == 0) {
                                 tempHorario[index].martes.push(dataHorario);
                             } else {  // si el slot ya tiene una materia, es un choque de horario
-                                //alert('Choque de horario en el dia Martes a las ' + slot.horaInicio + ' con la materia ' + slot.martes[0].sigla + '-' + slot.martes[0].grupo);
                                 setTexto('Choque de horario en el dia Martes a las ' + slot.horaInicio + ' con la materia ' + slot.martes[0].sigla + '-' + slot.martes[0].grupo);
                                 choque = true;
                                 setShowAlert(true);
@@ -343,7 +402,6 @@ export default function Inscripcion() {
                             if (slot.miercoles.length == 0) {
                                 tempHorario[index].miercoles.push(dataHorario);
                             } else {  // si el slot ya tiene una materia, es un choque de horario
-                                //alert('Choque de horario en el dia Miercoles a las ' + slot.horaInicio + ' con la materia ' + slot.miercoles[0].sigla + '-' + slot.miercoles[0].grupo);
                                 setTexto('Choque de horario en el dia Miercoles a las ' + slot.horaInicio + ' con la materia ' + slot.miercoles[0].sigla + '-' + slot.miercoles[0].grupo);
                                 choque = true;
                                 setShowAlert(true);
@@ -354,7 +412,6 @@ export default function Inscripcion() {
                             if (slot.jueves.length == 0) {
                                 tempHorario[index].jueves.push(dataHorario);
                             } else {  // si el slot ya tiene una materia, es un choque de horario
-                                //alert('Choque de horario en el dia Jueves a las ' + slot.horaInicio + ' con la materia ' + slot.jueves[0].sigla + '-' + slot.jueves[0].grupo);
                                 setTexto('Choque de horario en el dia Jueves a las ' + slot.horaInicio + ' con la materia ' + slot.jueves[0].sigla + '-' + slot.jueves[0].grupo);
                                 choque = true;
                                 setShowAlert(true);
@@ -365,7 +422,6 @@ export default function Inscripcion() {
                             if (slot.viernes.length == 0) {
                                 tempHorario[index].viernes.push(dataHorario);
                             } else {  // si el slot ya tiene una materia, es un choque de horario
-                                //alert('Choque de horario en el dia Viernes a las ' + slot.horaInicio + ' con la materia ' + slot.viernes[0].sigla + '-' + slot.viernes[0].grupo);
                                 setTexto('Choque de horario en el dia Viernes a las ' + slot.horaInicio + ' con la materia ' + slot.viernes[0].sigla + '-' + slot.viernes[0].grupo);
                                 choque = true;
                                 setShowAlert(true);
@@ -376,7 +432,6 @@ export default function Inscripcion() {
                             if (slot.sabado.length == 0) {
                                 tempHorario[index].sabado.push(dataHorario);
                             } else {  // si el slot ya tiene una materia, es un choque de horario
-                                //alert('Choque de horario en el dia Sabado a las ' + slot.horaInicio + ' con la materia ' + slot.sabado[0].sigla + '-' + slot.sabado[0].grupo);
                                 setTexto('Choque de horario en el dia Sabado a las ' + slot.horaInicio + ' con la materia ' + slot.sabado[0].sigla + '-' + slot.sabado[0].grupo);
                                 choque = true;
                                 setShowAlert(true);

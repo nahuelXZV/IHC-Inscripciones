@@ -1,4 +1,3 @@
-import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -31,7 +30,6 @@ export default function AlertDialog({ type = 'inscripción' }) {
         }
         setShowAlert(false);
     };
-    // fin funciones para manejar el alert
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -43,7 +41,6 @@ export default function AlertDialog({ type = 'inscripción' }) {
 
     function saveDataA() {
         if (inscripciones.length == 0) {
-            //alert('Necesita minimo 1 materia para guardar la adición');
             setTexto('Necesita minimo 1 materia para guardar la adición');
             setShowAlert(true);
             return;
@@ -55,7 +52,6 @@ export default function AlertDialog({ type = 'inscripción' }) {
 
     function saveDataI() {
         if (inscripciones.length == 0) {
-            //alert('Necesita minimo 1 materia para guardar la inscripción');
             setTexto('Necesita minimo 1 materia para guardar la inscripción');
             setShowAlert(true);
             return;
