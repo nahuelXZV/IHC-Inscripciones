@@ -24,6 +24,7 @@ export default function Nav() {
                 localStorage.removeItem("registro");
                 setUsuarios(usuarios);
                 console.log(usuarios[i]);
+                router.push('/login');
             }
         }
     }

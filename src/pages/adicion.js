@@ -35,13 +35,19 @@ export default function Adicion() {
   const [isInscripcion, setIsInscripcion] = useState(dataContext.isInscripcion);
   const [isAdicion, setIsAdicion] = useState(dataContext.isAdicion);
   const [busqueda, setBusqueda] = useState('');
+  const [usuarios, setUsuarios] = useState(dataContext.usuarios);  // funciones para manejar el alert
+  const [texto1, setTexto] = useState('');
+  const [checked, setChecked] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const usuarioAutenticado = usuarios.find((usuario) => usuario.auth === 'true');
+  let cantMaxLev = 2;
+  usuarioAutenticado ? cantMaxLev = usuarioAutenticado.cantidadLev : cantMaxLev = 2;
+
 
   // styles the table
   var normal = 'cursor-pointer select-none';
   var levantamiento = 'cursor-pointer select-none bg-levantamiento';
   var casoEspecial = 'cursor-pointer select-none bg-casoespecial';
-
-
 
   // verificamos si no inscribi
   if (!isInscripcion) {
@@ -76,7 +82,12 @@ export default function Adicion() {
   // funciones para mostrar la tabla 
   let rows = [];
   materias.map((materia) => {
-    rows.push(createData(materia.id, materia.nivel, materia.sigla, materia.materia, materia.observacion, materia?.docentes));
+    // buscar en la boleta si esta la materia
+    let materiaBoleta = inscripciones.find((materiaBoleta) => materiaBoleta.id === materia.id);
+    // si no esta en la boleta, la agregamos a la tabla
+    if (materiaBoleta?.id !== materia.id) {
+      rows.push(createData(materia.id, materia.nivel, materia.sigla, materia.materia, materia.observacion, materia?.docentes));
+    }
   });
 
   function createData(id, nivel, sigla, materia, observacion, docentes = []) {
@@ -159,10 +170,7 @@ export default function Adicion() {
   }
   const [listMaterias, setListMaterias] = useState(rows);
 
-  // funciones para manejar el alert
-  const [texto1, setTexto] = useState('');
-  const [checked, setChecked] = useState(false);
-  const [showAlert, setShowAlert] = useState(false);
+
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
@@ -175,8 +183,20 @@ export default function Adicion() {
 
   // funciones para manejar el horario
   function validate(materia, docente) {
+    let existe = false;
+    let mismoDocente = false;
+    inscripciones.forEach((inscripcion) => {
+      if (inscripcion.id == materia.id) {
+        existe = true;
+        if (inscripcion.docente.id == docente.id) {
+          mismoDocente = true;
+        }
+        return;
+      }
+    })
+
     // validamos la cantidad de inscripciones
-    if (dataContext.cantIns >= 7) {
+    if (dataContext.cantIns >= 7 && !mismoDocente) {
       //alert("Limite maximo de materias seleccionadas alcanzado");
       setTexto('Limite maximo de materias seleccionadas alcanzado');
       setShowAlert(true);
@@ -184,8 +204,8 @@ export default function Adicion() {
     }
 
     // validamos la cantidad de levantamientos
-    if (materia.observacion == 'Levantamiento') {
-      if (cantLev >= 2) {
+    if (materia.observacion == 'Levantamiento' && !mismoDocente) {
+      if (cantLev >= cantMaxLev) {
         //alert("Limite maximo de levantamientos alcanzado");
         setTexto('Limite maximo de levantamientos alcanzado');
         setShowAlert(true);
@@ -405,13 +425,11 @@ export default function Adicion() {
       }
     });
     setMaterias(temp2);
-    console.log(JSON.stringify(materias));
 
     // actualizamos la lista de materias
     var temp2 = listMaterias;
     temp2.forEach((materia2, index) => {
       if (materia2.id == materia.id) {
-        console.log('entro' + JSON.stringify(materia2));
         materia2.listaMaterias.forEach((docente2, index2) => {
           if (docente2.id == docente.id) {
             temp2[index].listaMaterias[index2].check = value;

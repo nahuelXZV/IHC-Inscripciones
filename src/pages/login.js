@@ -66,9 +66,6 @@ export default function Login() {
             return;
         }
         evento.preventDefault(); // Evita que se envíe el formulario
-        console.log('Registro:', registro);
-        console.log('Contraseña:', contraseña);
-        console.log(usuarios);
         for (let i = 0; i < usuarios.length; i++) {
             if (usuarios[i].registro == registro && usuarios[i].contraseña == contraseña) {
                 usuarios[i].auth = 'true'
@@ -76,8 +73,6 @@ export default function Login() {
                 setCookie('registro', registro, { maxAge: 60 * 60 * 24 * 7 });
                 localStorage.setItem("registro", registro);
                 setUsuarios(usuarios);
-                console.log('Inicio de sesion exitoso')
-                console.log(usuarios[i]);
                 router.push('/');
                 auth = true;
             }

@@ -5,6 +5,11 @@ export default function Horario() {
     const dataContext = useAppContext();
     var data = dataContext.horario;
 
+    function setColor(color) {
+        var colo = `text-center font-normal text-pq bg-[${color}] border-b border-l border-[#E8E8E8]`;
+        return colo;
+    }
+
     return (
         <div className="w-full h-full">
             <table className="table-auto w-full">
@@ -48,7 +53,7 @@ export default function Horario() {
 
                                 {
                                     materia.lunes.map((dia, index) => {
-                                        return <td className="text-center font-normal text-pq bg-[#F3F6FF] border-b border-l border-[#E8E8E8]" key={materia.horaInicio + dia.sigla + dia.grupo}>
+                                        return <td className={setColor(dia.color)} key={materia.horaInicio + dia.sigla + dia.grupo}>
                                             {dia.sigla + ' - ' + dia.grupo}
                                         </td>
                                     })
@@ -60,7 +65,7 @@ export default function Horario() {
 
                                 {
                                     materia.martes.map((dia, index) => {
-                                        return <td className="text-center font-normal text-pq bg-[#F3F6FF] border-b border-l border-[#E8E8E8]" key={materia.horaInicio + dia.sigla + dia.grupo}>
+                                        return <td className={setColor(dia.color)} key={materia.horaInicio + dia.sigla + dia.grupo}>
                                             {dia.sigla + ' - ' + dia.grupo}
                                         </td>
                                     })
@@ -73,7 +78,7 @@ export default function Horario() {
 
                                 {
                                     materia.miercoles.map((dia, index) => {
-                                        return <td className="text-center font-normal text-pq bg-[#F3F6FF] border-b border-l border-[#E8E8E8]" key={materia.horaInicio + dia.sigla + dia.grupo}>
+                                        return <td className={setColor(dia.color)} key={materia.horaInicio + dia.sigla + dia.grupo}>
                                             {dia.sigla + ' - ' + dia.grupo}
                                         </td>
                                     })
@@ -86,7 +91,7 @@ export default function Horario() {
 
                                 {
                                     materia.jueves.map((dia, index) => {
-                                        return <td className="text-center font-normal text-pq bg-[#F3F6FF] border-b border-l border-[#E8E8E8]" key={materia.horaInicio + dia.sigla + dia.grupo}>
+                                        return <td className={setColor(dia.color)} key={materia.horaInicio + dia.sigla + dia.grupo}>
                                             {dia.sigla + ' - ' + dia.grupo}
                                         </td>
                                     })
@@ -98,7 +103,7 @@ export default function Horario() {
                                 {/* ------------------------------------------------- */}
                                 {
                                     materia.viernes.map((dia, index) => {
-                                        return <td className="text-center font-normal text-pq bg-[#F3F6FF] border-b border-l border-[#E8E8E8]" key={materia.horaInicio + dia.sigla + dia.grupo}>
+                                        return <td className={setColor(dia.color)} key={materia.horaInicio + dia.sigla + dia.grupo}>
                                             {dia.sigla + ' - ' + dia.grupo}
                                         </td>
                                     })
@@ -111,7 +116,7 @@ export default function Horario() {
 
                                 {
                                     materia.sabado.map((dia, index) => {
-                                        return <td className="text-center font-normal text-pq bg-[#F3F6FF] border-b border-l border-[#E8E8E8]" key={materia.horaInicio + dia.sigla + dia.grupo}>
+                                        return <td className={setColor(dia.color)} key={materia.horaInicio + dia.sigla + dia.grupo}>
                                             {dia.sigla + ' - ' + dia.grupo}
                                         </td>
                                     })
@@ -125,6 +130,6 @@ export default function Horario() {
                     }
                 </tbody>
             </table>
-        </div>
+        </div >
     );
 }

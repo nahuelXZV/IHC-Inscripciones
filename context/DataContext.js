@@ -1315,8 +1315,8 @@ var DBuser = [
         id: 2,
         nombre: "Karen",
         apellido: "Mendoza Rios",
-        registro: '219010789',
-        contraseña: '12345678',
+        registro: '219060193',
+        contraseña: '123',
         carrera: 'Ing. Informática',
         ci: '12890698',
         fecha: '22 de agosto de 2000',
@@ -1328,7 +1328,27 @@ var DBuser = [
         cantidadLev: 2,
     }
 ];
-
+var DBColores = [
+    "#AFEEEE", // Verde mar
+    "#87CEEB", // Azul cielo
+    "#00CED1", // Turquesa oscuro
+    "#98FB98", // Verde pálido
+    "#9ACD32", // Verde amarilloso
+    "#FFDAB9", // Melocotón claro
+    "#FFE4E1", // Rosa claro
+    "#FAEBD7", // Blanco antiguo
+    "#F0E68C", // Amarillo khaki
+    "#EEE8AA", // Amarillo pálido
+    "#FFFACD", // Amarillo claro
+    "#F5DEB3", // Trigo
+    "#D2B48C", // Marrón claro
+    "#E6E6FA", // Lavanda
+    "#F0F8FF", // Azul alice
+    "#87CEFA", // Azul claro cielo
+    "#B0E0E6", // Azul polvo
+    "#AFEEEE", // Turquesa claro
+    "#F5F5DC" // Beige antiguo
+]
 
 const AppContext = createContext({
     materias: DBmaterias,
@@ -1342,6 +1362,8 @@ const AppContext = createContext({
     cantLev: 0,
     isInscripcion: false,
     isAdicion: false,
+    colores: DBColores,
+    setColor: () => { },
     setIsInscripcion: () => { },
     setCantIns: () => { },
     setCantLev: () => { },
@@ -1358,6 +1380,7 @@ export default function DataContext({ children }) {
     const [horario, setHorario] = useState(DBHorario);
     const [usuarios, setUsuarios] = useState(DBuser);
     const [listMaterias, setListMaterias] = useState([]);
+    const [colores, setColores] = useState(DBColores);
     const [cantIns, setCantIns] = useState(0);
     const [cantLev, setCantLev] = useState(0);
     const [isInscripcion, setIsInscripcion] = useState(false);
@@ -1377,6 +1400,8 @@ export default function DataContext({ children }) {
                 cantLev,
                 isInscripcion,
                 isAdicion,
+                colores,
+                setColor: setColores,
                 setIsInscripcion,
                 setCantIns,
                 setCantLev,

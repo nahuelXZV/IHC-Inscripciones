@@ -42,9 +42,11 @@ export default function AlertDialog({ type = 'inscripción' }) {
     };
 
     function saveDataA() {
-        if (inscripciones.length == 0) {
+        console.log(inscripciones.length);
+        console.log(boleta.length);
+        if (inscripciones.length == boleta.length) {
             //alert('Necesita minimo 1 materia para guardar la adición');
-            setTexto('Necesita minimo 1 materia para guardar la adición');
+            setTexto('Necesita minimo adicionar 1 materia para guardar la adición');
             setShowAlert(true);
             return;
         }
