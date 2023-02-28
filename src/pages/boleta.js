@@ -70,7 +70,6 @@ export default function Boleta() {
                     <TableCell>{historyRow.docente.horario}</TableCell>
                   </TableRow>
                 ))}
-              <br />
             </TableBody>
           </Table>
             :
