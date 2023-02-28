@@ -205,7 +205,9 @@ export default function Adicion() {
 
     // validamos la cantidad de levantamientos
     if (materia.observacion == 'Levantamiento' && !mismoDocente) {
-      if (cantLev >= cantMaxLev) {
+      console.log('cantLev', dataContext.cantLev);
+      console.log('cantMaxLev', cantMaxLev);
+      if (dataContext.cantLev >= cantMaxLev) {
         //alert("Limite maximo de levantamientos alcanzado");
         setTexto('Limite maximo de levantamientos alcanzado');
         setShowAlert(true);
@@ -249,49 +251,49 @@ export default function Adicion() {
         })
         setInscripciones(inscripcionesTemp);    // actualizamos la lista de inscripciones
         dataContext.setCantIns(dataContext.cantIns - 1);            // actualizamos la cantidad de inscripciones
-        materia.observacion == 'Levantamiento' ? setCantLev(cantLev - 1) : null;    // actualizamos la cantidad de levantamientos
+        materia.observacion == 'Levantamiento' ? dataContext.setCantLev(cantLev - 1) : null;    // actualizamos la cantidad de levantamientos
 
         // eliminamos la materia del horario
         let horarioTemp = horario;
         horarioTemp.forEach((slot, index) => {
           if (slot.lunes.length > 0 && slot.lunes[0].id == materia.id) {
-            slot.lunes.forEach((materia, index) => {
-              if (materia.id == materia.id) {
+            slot.lunes.forEach((mat, index) => {
+              if (mat.id == materia.id) {
                 slot.lunes.splice(index, 1);
               }
             })
           }
           if (slot.martes.length > 0) {
-            slot.martes.forEach((materia, index) => {
-              if (materia.id == materia.id) {
+            slot.martes.forEach((mat, index) => {
+              if (mat.id == materia.id) {
                 slot.martes.splice(index, 1);
               }
             })
           }
           if (slot.miercoles.length > 0 && slot.miercoles[0].id == materia.id) {
-            slot.miercoles.forEach((materia, index) => {
-              if (materia.id == materia.id) {
+            slot.miercoles.forEach((mat, index) => {
+              if (mat.id == materia.id) {
                 slot.miercoles.splice(index, 1);
               }
             })
           }
           if (slot.jueves.length > 0 && slot.jueves[0].id == materia.id) {
-            slot.jueves.forEach((materia, index) => {
-              if (materia.id == materia.id) {
+            slot.jueves.forEach((mat, index) => {
+              if (mat.id == materia.id) {
                 slot.jueves.splice(index, 1);
               }
             })
           }
           if (slot.viernes.length > 0 && slot.viernes[0].id == materia.id) {
-            slot.viernes.forEach((materia, index) => {
-              if (materia.id == materia.id) {
+            slot.viernes.forEach((mat, index) => {
+              if (mat.id == materia.id) {
                 slot.viernes.splice(index, 1);
               }
             })
           }
           if (slot.sabado.length > 0 && slot.sabado[0].id == materia.id) {
-            slot.sabado.forEach((materia, index) => {
-              if (materia.id == materia.id) {
+            slot.sabado.forEach((mat, index) => {
+              if (mat.id == materia.id) {
                 slot.sabado.splice(index, 1);
               }
             })
@@ -407,7 +409,7 @@ export default function Adicion() {
 
       setHorario(tempHorario);    // actualizamos el horario
       dataContext.setCantIns(dataContext.cantIns + 1);    // actualizamos la cantidad de inscripciones
-      materia.observacion == 'Levantamiento' ? setCantLev(cantLev + 1) : null;    // actualizamos la cantidad de levantamientos
+      materia.observacion == 'Levantamiento' ? dataContext.setCantLev(cantLev + 1) : null;    // actualizamos la cantidad de levantamientos
 
       handlerCheck(true, materia, docente); // actualizamos el check de la materia
     }

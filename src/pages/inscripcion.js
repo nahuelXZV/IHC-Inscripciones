@@ -239,7 +239,7 @@ export default function Inscripcion() {
                 })
                 setInscripciones(inscripcionesTemp);    // actualizamos la lista de inscripciones
                 dataContext.setCantIns(dataContext.cantIns - 1);            // actualizamos la cantidad de inscripciones
-                materia.observacion == 'Levantamiento' ? setCantLev(cantLev - 1) : null;    // actualizamos la cantidad de levantamientos
+                materia.observacion == 'Levantamiento' ? dataContext.setCantLev(cantLev - 1) : null;    // actualizamos la cantidad de levantamientos
 
                 // eliminamos la materia del horario
                 let horarioTemp = horario;
@@ -404,7 +404,7 @@ export default function Inscripcion() {
 
             // setHorario(tempHorario);    // actualizamos el horario
             dataContext.setCantIns(dataContext.cantIns + 1);    // actualizamos la cantidad de inscripciones
-            materia.observacion == 'Levantamiento' ? setCantLev(cantLev + 1) : null;    // actualizamos la cantidad de levantamientos
+            materia.observacion == 'Levantamiento' ? dataContext.setCantLev(cantLev + 1) : null;    // actualizamos la cantidad de levantamientos
 
             handlerCheck(true, materia, docente); // actualizamos el check de la materia
         }
