@@ -1349,6 +1349,7 @@ const AppContext = createContext({
     setIsAdicion: () => { },
     setListMaterias: () => { },
     setBoleta: () => { },
+    setInscripciones: () => { },
 });
 
 export default function DataContext({ children }) {
@@ -1388,6 +1389,7 @@ export default function DataContext({ children }) {
                 setIsAdicion,
                 setListMaterias,
                 setBoleta,
+                setInscripciones,
             }}>
             {children}
         </AppContext.Provider>

@@ -289,13 +289,16 @@ export default function Inscripcion() {
         // si la materia ya esta en la lista de inscripciones, la eliminamos de la lista
         if (existe) {
             if (mismoDocente) {
+                console.log('mismo docente');
                 let inscripcionesTemp = [];
                 inscripciones.forEach((inscripcion) => {
                     if (inscripcion.id != materia.id) {
                         inscripcionesTemp.push(inscripcion);
                     }
                 })
-                setInscripciones(inscripcionesTemp);    // actualizamos la lista de inscripciones
+                console.log(JSON.stringify(inscripcionesTemp));
+                dataContext.setInscripciones(inscripcionesTemp);    // actualizamos la lista de inscripciones
+                console.log(JSON.stringify(inscripciones));
                 dataContext.setCantIns(dataContext.cantIns - 1);            // actualizamos la cantidad de inscripciones
                 materia.observacion == 'Levantamiento' ? dataContext.setCantLev(cantLev - 1) : null;    // actualizamos la cantidad de levantamientos
 

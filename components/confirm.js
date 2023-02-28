@@ -45,7 +45,7 @@ export default function AlertDialog({ type = 'inscripción' }) {
             setShowAlert(true);
             return;
         }
-        setBoleta(inscripciones);  // guardamos la lista de inscripciones en la base de datos local
+        // setBoleta(inscripciones);  // guardamos la lista de inscripciones en la base de datos local
         dataContext.setIsAdicion(true);
         router.push('/boleta'); // redireccionamos a la pagina del perfil
     }
@@ -56,7 +56,7 @@ export default function AlertDialog({ type = 'inscripción' }) {
             setShowAlert(true);
             return;
         }
-        setBoleta(inscripciones);  // guardamos la lista de inscripciones en la base de datos local
+        // setBoleta(inscripciones);  // guardamos la lista de inscripciones en la base de datos local
         dataContext.setIsInscripcion(true); // indicamos que ya se realizo la inscripcion
         router.push('/boleta'); // redireccionamos a la pagina del perfil
     }
